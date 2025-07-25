@@ -17,60 +17,39 @@ import {
 const ClientsCarousel = () => {
   const clientSegments = [
     {
-      icon: Landmark,
-      title: "Bancos e Financeiras",
+      image: "https://images.unsplash.com/photo-1681505526188-805e68c77582?q=80&w=1170&auto=format&fit=crop",
+      text: "Bancos & Cooperativas",
       description: "Instituições financeiras de todos os portes",
-      companies: ["Banco do Brasil", "Caixa Econômica", "Santander", "Itaú", "Bradesco"],
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: ShoppingBag,
-      title: "Varejo e Comércio",
-      description: "Redes de varejo e estabelecimentos comerciais",
-      companies: ["Shopping Centers", "Supermercados", "Lojas de Departamento", "Farmácias"],
+      icon: Landmark,
       color: "from-green-500 to-green-600"
     },
     {
-      icon: Gem,
-      title: "Joalherias e Relojoarias",
-      description: "Estabelecimentos especializados em objetos de valor",
-      companies: ["Vivara", "H.Stern", "Relojoarias", "Casas de Câmbio"],
-      color: "from-purple-500 to-purple-600"
+      image: "https://plus.unsplash.com/premium_photo-1683121938935-118d0a16a469?q=80&w=1170&auto=format&fit=crop",
+      text: "Varejo",
+      description: "Redes de varejo e estabelecimentos comerciais",
+      icon: ShoppingBag,
+      color: "from-blue-500 to-blue-600"
     },
     {
-      icon: CreditCard,
-      title: "Processamento de Cartões",
-      description: "Empresas de meios de pagamento",
-      companies: ["Cielo", "Rede", "Stone", "PagSeguro"],
+      image: "https://images.unsplash.com/photo-1611533761160-c3fadf296645?q=80&w=1170&auto=format&fit=crop",
+      text: "Postos de Combustíveis",
+      description: "Rede de postos de combustível",
+      icon: Fuel,
       color: "from-orange-500 to-orange-600"
     },
     {
-      icon: Factory,
-      title: "Indústrias",
-      description: "Grandes complexos industriais",
-      companies: ["Multinacionais", "Indústrias Químicas", "Siderúrgicas", "Alimentícias"],
-      color: "from-gray-500 to-gray-600"
+      image: "https://maquininhadecartao.tec.br/wp-content/uploads/2024/05/loteria-1300x731.webp",
+      text: "Lotérica",
+      description: "Casas lotéricas e jogos",
+      icon: Coins,
+      color: "from-purple-500 to-purple-600"
     },
     {
+      image: "https://images.unsplash.com/photo-1580281657527-47f249e8f4df?q=80&w=1170&auto=format&fit=crop",
+      text: "Farmácia",
+      description: "Redes de farmácias e drogarias",
       icon: Hospital,
-      title: "Hospitais e Clínicas",
-      description: "Instituições de saúde",
-      companies: ["Hospitais Privados", "Clínicas", "Laboratórios", "Planos de Saúde"],
       color: "from-red-500 to-red-600"
-    },
-    {
-      icon: GraduationCap,
-      title: "Instituições de Ensino",
-      description: "Universidades e escolas",
-      companies: ["Universidades", "Escolas Privadas", "Cursos Técnicos", "Faculdades"],
-      color: "from-indigo-500 to-indigo-600"
-    },
-    {
-      icon: Fuel,
-      title: "Postos e Combustíveis",
-      description: "Rede de postos de combustível",
-      companies: ["Shell", "Petrobras", "Ipiranga", "Ale"],
-      color: "from-yellow-500 to-yellow-600"
     }
   ];
 
@@ -89,45 +68,42 @@ const ClientsCarousel = () => {
         </div>
 
         {/* Clients grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-16">
           {clientSegments.map((segment, index) => {
             const IconComponent = segment.icon;
             return (
               <Card 
-                key={segment.title}
+                key={segment.text}
                 className="group hover:shadow-glow transition-smooth border-0 shadow-card bg-background animate-scale-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {/* Icon with gradient background */}
-                    <div className={`w-16 h-16 bg-gradient-to-br ${segment.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-smooth`}>
-                      <IconComponent className="w-8 h-8 text-white" />
+                <CardContent className="p-0">
+                  <div className="relative">
+                    {/* Background image */}
+                    <div className="h-40 w-full relative overflow-hidden">
+                      <img
+                        src={segment.image}
+                        alt={segment.text}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+
+                    {/* Icon overlay */}
+                    <div className="absolute top-4 right-4">
+                      <div className={`w-12 h-12 bg-gradient-to-br ${segment.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-2">
+                    <div className="p-6 space-y-3">
                       <h3 className="text-lg font-bold text-primary group-hover:text-primary-light transition-smooth">
-                        {segment.title}
+                        {segment.text}
                       </h3>
                       <p className="text-sm text-muted-foreground">
                         {segment.description}
                       </p>
-                    </div>
-
-                    {/* Companies list */}
-                    <div className="space-y-1">
-                      {segment.companies.slice(0, 3).map((company) => (
-                        <div key={company} className="text-xs text-muted-foreground flex items-center gap-2">
-                          <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
-                          <span>{company}</span>
-                        </div>
-                      ))}
-                      {segment.companies.length > 3 && (
-                        <div className="text-xs text-primary font-medium">
-                          +{segment.companies.length - 3} outros
-                        </div>
-                      )}
                     </div>
                   </div>
                 </CardContent>
@@ -140,11 +116,11 @@ const ClientsCarousel = () => {
         <div className="bg-primary rounded-2xl p-8 lg:p-12 text-primary-foreground">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2 animate-scale-in">
-              <div className="text-4xl font-bold text-accent">500+</div>
+              <div className="text-4xl font-bold text-accent">300+</div>
               <div className="text-primary-foreground/90">Clientes Ativos</div>
             </div>
             <div className="space-y-2 animate-scale-in" style={{ animationDelay: "0.1s" }}>
-              <div className="text-4xl font-bold text-accent">8</div>
+              <div className="text-4xl font-bold text-accent">5</div>
               <div className="text-primary-foreground/90">Segmentos Atendidos</div>
             </div>
             <div className="space-y-2 animate-scale-in" style={{ animationDelay: "0.2s" }}>

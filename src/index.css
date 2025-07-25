@@ -8,54 +8,55 @@
 
 @layer base {
   :root {
-    /* Cores principais da marca - tons profissionais de azul e cinza */
-    --primary: 214 100% 15%;          /* Azul corporativo escuro */
+    /* Cores principais da marca - verde corporativo com bege claro */
+    --primary: 142 76% 36%;            /* Verde corporativo */
     --primary-foreground: 0 0% 100%;   /* Branco */
-    --primary-light: 214 100% 25%;     /* Azul um pouco mais claro */
-    --primary-glow: 214 100% 35%;      /* Para efeitos de glow */
+    --primary-light: 142 76% 46%;      /* Verde mais claro */
+    --primary-glow: 142 76% 56%;       /* Para efeitos de glow */
     
-    /* Cores secundárias */
-    --secondary: 210 17% 98%;          /* Cinza muito claro */
-    --secondary-foreground: 214 50% 15%; /* Azul escuro */
+    /* Cores secundárias - bege claro */
+    --secondary: 40 23% 97%;           /* Bege muito claro */
+    --secondary-foreground: 142 76% 25%; /* Verde escuro */
     
     /* Cores de fundo */
     --background: 0 0% 100%;           /* Branco puro */
-    --foreground: 222 47% 11%;         /* Preto azulado escuro */
+    --foreground: 142 50% 15%;         /* Verde muito escuro */
     
     /* Cores de card e superfícies */
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 40 23% 99%;                /* Bege quase branco */
+    --card-foreground: 142 50% 15%;
     
     /* Cores de popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 142 50% 15%;
     
     /* Cores neutras */
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 40 23% 95%;               /* Bege claro */
+    --muted-foreground: 142 30% 35%;   /* Verde acinzentado */
     
-    /* Cor de destaque/acento */
-    --accent: 43 96% 56%;              /* Dourado para CTAs importantes */
-    --accent-foreground: 222 47% 11%;
+    /* Cor de destaque/acento - dourado harmonioso */
+    --accent: 42 87% 55%;              /* Dourado que combina com verde */
+    --accent-foreground: 142 50% 15%;
     
     /* Cores de sistema */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
     /* Bordas e inputs */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 214 100% 15%;
+    --border: 40 23% 88%;              /* Bege mais escuro para bordas */
+    --input: 40 23% 88%;
+    --ring: 142 76% 36%;
     
-    /* Gradientes corporativos */
-    --gradient-primary: linear-gradient(135deg, hsl(214 100% 15%), hsl(214 100% 25%));
-    --gradient-hero: linear-gradient(135deg, hsl(214 100% 12%) 0%, hsl(214 100% 20%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 96% 56%), hsl(43 96% 66%));
+    /* Gradientes corporativos verde e bege */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 25%) 0%, hsl(142 76% 35%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(42 87% 55%), hsl(42 87% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(40 23% 97%), hsl(40 23% 99%));
     
-    /* Sombras elegantes */
-    --shadow-elegant: 0 10px 30px -10px hsl(214 100% 15% / 0.2);
-    --shadow-glow: 0 0 40px hsl(214 100% 25% / 0.15);
-    --shadow-card: 0 4px 20px -4px hsl(214 100% 15% / 0.1);
+    /* Sombras elegantes com verde */
+    --shadow-elegant: 0 10px 30px -10px hsl(142 76% 36% / 0.2);
+    --shadow-glow: 0 0 40px hsl(142 76% 46% / 0.15);
+    --shadow-card: 0 4px 20px -4px hsl(142 76% 36% / 0.1);
     
     /* Transições suaves */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -81,46 +82,47 @@
   }
 
   .dark {
-    /* Modo escuro com tons profissionais */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Modo escuro com tons verdes e bege escuro */
+    --background: 142 50% 8%;
+    --foreground: 40 23% 98%;
     
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 142 50% 10%;
+    --card-foreground: 40 23% 98%;
     
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 142 50% 10%;
+    --popover-foreground: 40 23% 98%;
     
-    --primary: 214 100% 35%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 214 100% 45%;
-    --primary-glow: 214 100% 55%;
+    --primary: 142 76% 56%;
+    --primary-foreground: 142 50% 8%;
+    --primary-light: 142 76% 66%;
+    --primary-glow: 142 76% 76%;
     
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 142 50% 15%;
+    --secondary-foreground: 40 23% 98%;
     
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 142 50% 15%;
+    --muted-foreground: 40 23% 70%;
     
-    --accent: 43 96% 56%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 42 87% 55%;
+    --accent-foreground: 142 50% 8%;
     
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 40 23% 98%;
     
-    --border: 222 47% 16%;
-    --input: 222 47% 16%;
-    --ring: 214 100% 35%;
+    --border: 142 50% 20%;
+    --input: 142 50% 20%;
+    --ring: 142 76% 56%;
     
     /* Gradientes para modo escuro */
-    --gradient-primary: linear-gradient(135deg, hsl(214 100% 25%), hsl(214 100% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 6%) 0%, hsl(214 100% 15%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 96% 56%), hsl(43 96% 66%));
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 46%), hsl(142 76% 56%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 50% 8%) 0%, hsl(142 76% 25%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(42 87% 55%), hsl(42 87% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(142 50% 12%), hsl(142 50% 15%));
     
     /* Sombras para modo escuro */
-    --shadow-elegant: 0 10px 30px -10px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 40px hsl(214 100% 35% / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.2);
+    --shadow-elegant: 0 10px 30px -10px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 40px hsl(142 76% 56% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
   }
 }
 
@@ -151,6 +153,10 @@
   
   .gradient-accent {
     background: var(--gradient-accent);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
   }
   
   .shadow-elegant {

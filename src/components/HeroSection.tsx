@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Clock, Users } from "lucide-react";
-import heroImage from "@/assets/hero-security-transport.jpg";
+import heroImage from "@/assets/hero-zkx-green.jpg";
 
 const HeroSection = () => {
   const stats = [

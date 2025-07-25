@@ -39,7 +39,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>(11) 9999-9999</span>
+              <span>(11) 3333-4444</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
@@ -47,7 +47,7 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden md:block text-xs">
-            Segurança e confiabilidade há mais de 20 anos
+            Transporte de Valores • Segurança • Confiança
           </div>
         </div>
       </div>
@@ -56,14 +56,12 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center">
-              <Shield className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-xl text-primary">ZKX</span>
-              <span className="text-xs text-muted-foreground">TRANSPORTES</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src="/lovable-uploads/9fcf5389-316f-482b-aa44-d1c0ded277c0.png" 
+              alt="ZKX Transportes Logo" 
+              className="h-12 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
