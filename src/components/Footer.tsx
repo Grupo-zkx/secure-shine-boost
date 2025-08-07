@@ -22,7 +22,7 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "contato@zkxtransportes.com.br",
+    value: "contato@grupozkx.com.br",
   },
   {
     icon: MapPin,

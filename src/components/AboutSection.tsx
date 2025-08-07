@@ -52,8 +52,6 @@ const achievements = [
 
 const certifications = [
   "Licença Polícia Federal",
-  "ISO 9001: Gestão da Qualidade",
-  "ISO 27001: Segurança da Informação",
   "ABNT NBR 15000: Transporte de Valores",
   "Certificação ANVISA",
   "Licença Corpo de Bombeiros",

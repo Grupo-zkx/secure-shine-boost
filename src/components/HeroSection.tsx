@@ -109,12 +109,6 @@ const HeroSection = () => (
                 Licenciado pela Polícia Federal
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-[#237E45]" />
-              <span className="text-xs sm:text-sm text-[#BFC8CC]">
-                ISO 9001 Certificado
-              </span>
-            </div>
           </div>
         </div>
         {/* Direita: stats - QUADRADOS maiores, texto verde */}

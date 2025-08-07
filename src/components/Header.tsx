@@ -51,7 +51,7 @@ export default function Header() {
             <Phone className="w-3 h-3" /> 0800 349 8027
           </span>
           <span className="flex items-center gap-1">
-            <Mail className="w-3 h-3" /> contato@zkxtransportes.com.br
+            <Mail className="w-3 h-3" /> contato@grupozkx.com.br
           </span>
         </div>
         <div className="flex items-center gap-2 font-semibold opacity-85">

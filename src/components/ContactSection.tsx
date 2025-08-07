@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "contato@zkxtransportes.com.br",
+    value: "contato@grupozkx.com.br",
     description: "Resposta em até 2 horas",
   },
   {
