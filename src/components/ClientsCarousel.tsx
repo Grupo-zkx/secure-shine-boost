@@ -27,35 +27,35 @@ const BRANCO = "#FFFFFF"
 
 const clientSegments = [
   {
-    image: "/assets/corporativo.jpg",
+    image: "/assets/carroussel/corporativo.jpg",
     text: "Bancos & Cooperativas",
     description: "Instituições financeiras de todos os portes",
     icon: Landmark,
     color: "from-[#237E45] to-[#3dbb78]", // verde gradiente
   },
   {
-    image: "/assets/varejo.jpg",
+    image: "/assets/carroussel/varejo.jpg",
     text: "Varejo",
     description: "Redes de varejo e estabelecimentos comerciais",
     icon: ShoppingBag,
     color: "from-[#BFC8CC] to-[#98A9B6]", // prata/cinza azulado
   },
   {
-    image: "/assets/rede_combustivel.jpg",
+    image: "/assets/carroussel/rede_combustivel.jpg",
     text: "Postos de Combustíveis",
     description: "Redes de postos de combustível",
     icon: Fuel,
     color: "from-[#f26907] to-[#ffb44d]", // laranja quente
   },
   {
-    image: "/assets/loterica.jpg",
+    image: "/assets/carroussel/loterica.jpg",
     text: "Lotérica",
     description: "Casas lotéricas e jogos",
     icon: Coins,
     color: "from-[#6b5ca5] to-[#BFC8CC]", // roxo/prata
   },
   {
-    image: "/assets/farmacia.jpg",
+    image: "/assets/carroussel/farmacia.jpg",
     text: "Farmácia",
     description: "Redes de farmácias e drogarias",
     icon: Hospital,
