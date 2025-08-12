@@ -8,7 +8,6 @@ const VERDE = "#237E45"
 const VERDE_ESCURO = "#154723"
 const PRATA = "#BFC8CC"
 
-// Textos com efeito typing
 const typingWords = [
   "Transporte de numerário",
   "Transporte de Joias e Metais",
@@ -20,12 +19,17 @@ const typingWords = [
 const description = `Protegemos o que é mais importante para seu negócio.
 Soluções completas em transporte de valores com tecnologia de ponta e equipe especializada.`
 
+const HEADER_HEIGHT = 64 // ajuste para a altura real do header (inclua o topbar se houver)
+
 const HeroSection = () => (
   <section
     id="home"
     aria-label="Transporte de Valores e Segurança ZKX"
-    className="w-full flex flex-col items-center bg-white pt-[112px]"
-    style={{ minHeight: "calc(76vh + 100px)" }}
+    className="w-full flex flex-col items-center bg-white"
+    style={{
+      marginTop: HEADER_HEIGHT,
+      minHeight: "88vh", // Banner maior para mostrar mais imagem
+    }}
   >
     {/* Faixa com imagem */}
     <motion.div
@@ -33,14 +37,14 @@ const HeroSection = () => (
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, type: "spring", delay: 0.08 }}
-      style={{ minHeight: 360 }}
+      style={{ minHeight: 500 }} // Aumenta a altura do banner
     >
       <img
         src="/assets/hero-img.jpg"
         alt="Equipe ZKX transporte de valores"
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{
-          filter: "brightness(0.74)",
+          filter: "brightness(0.80)", // Menos escurecido para mostrar mais detalhes
           minHeight: "100%",
           maxHeight: "100%",
         }}
@@ -57,29 +61,29 @@ const HeroSection = () => (
         <img
           src={LOGO}
           alt="ZKX Logo"
-          className="h-28 md:h-36 w-auto mx-auto mb-7 select-none"
-          style={{ objectFit: "contain", maxWidth: "58vw", minHeight: 90 }}
+          className="h-36 md:h-44 w-auto mx-auto mb-9 select-none"
+          style={{ objectFit: "contain", maxWidth: "60vw", minHeight: 120 }}
         />
         <h2
-          className="text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-3"
+          className="text-4xl md:text-5xl font-extrabold tracking-tight text-center mb-3"
           style={{
             color: "#fff",
-            letterSpacing: "0.015em",
-            marginBottom: "1.1rem",
+            letterSpacing: "0.018em",
+            marginBottom: "1.15rem",
             textShadow:
-              "0 3px 24px rgba(21, 71, 35, 0.22), 0 1px 1px #0b220f80",
+              "0 3px 22px rgba(21, 71, 35, 0.19), 0 1px 1px #113b2a80",
           }}
         >
           Quem é daqui, atende melhor.
         </h2>
         <span
-          className="block text-base md:text-lg font-normal"
+          className="block text-lg md:text-xl font-normal"
           style={{
-            color: "#ececec",
+            color: "#efefef",
             fontWeight: 400,
             textTransform: "lowercase",
             letterSpacing: "-0.01em",
-            textShadow: "0 1px 12px #0b230b66",
+            textShadow: "0 1px 12px #18332155",
           }}
         >
           cuidamos do seu&nbsp;
@@ -96,13 +100,13 @@ const HeroSection = () => (
       </motion.div>
     </motion.div>
 
-    {/* Texto corporativo centralizado, margin top generosa, justificado */}
+    {/* Texto corporativo centralizado, com espaçamento confortável */}
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.95, duration: 0.7, type: "spring" }}
       className="w-full flex flex-col items-center"
-      style={{ marginTop: 56, marginBottom: 38 }}
+      style={{ marginTop: 64, marginBottom: 38 }}
     >
       <div
         className="max-w-xl px-4 mx-auto"
@@ -125,7 +129,6 @@ const HeroSection = () => (
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.22, duration: 0.55, type: "spring" }}
       className="flex justify-center w-full z-20 mb-14"
-      style={{ marginTop: 0 }}
     >
       <Button
         size="xl"
@@ -140,11 +143,11 @@ const HeroSection = () => (
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       transition={{ delay: 1.41, duration: 0.6, type: "spring" }}
-      className="w-40 my-8 border-t-2 border-[#BFC8CC] mx-auto"
+      className="w-40 my-10 border-t-2 border-[#BFC8CC] mx-auto"
       style={{
         borderColor: PRATA,
         borderRadius: 2,
-        marginTop: 46,
+        marginTop: 54,
         marginBottom: 24,
       }}
     />
