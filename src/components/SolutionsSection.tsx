@@ -99,7 +99,7 @@ const ServicesSection = () => (
           className="text-4xl lg:text-5xl font-black mb-4"
           style={{ color: VERDE }}
         >
-          Nossos Serviços
+          Nossas Soluções
         </h2>
         <p
           className="text-lg lg:text-xl max-w-xl mx-auto"

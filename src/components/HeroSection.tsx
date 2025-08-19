@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { Shield } from "lucide-react"
 import { motion } from "framer-motion"
 import { Typewriter } from "react-simple-typewriter"
 
-const LOGO = "/assets/logo/grupo_zkx.png"
 const VERDE = "#237E45"
 const VERDE_ESCURO = "#154723"
 const PRATA = "#BFC8CC"
@@ -19,65 +17,73 @@ const typingWords = [
 const description = `Protegemos o que é mais importante para seu negócio.
 Soluções completas em transporte de valores com tecnologia de ponta e equipe especializada.`
 
-const HEADER_HEIGHT = 64 // ajuste para a altura real do header (inclua o topbar se houver)
-
 const HeroSection = () => (
   <section
     id="home"
     aria-label="Transporte de Valores e Segurança ZKX"
-    className="w-full flex flex-col items-center bg-white"
-    style={{
-      marginTop: HEADER_HEIGHT,
-      minHeight: "88vh", // Banner maior para mostrar mais imagem
-    }}
+    className="w-full bg-white flex flex-col items-center relative"
+    style={{ minHeight: "75vh" }}
   >
-    {/* Faixa com imagem */}
+    {/* Banner com imagem e conteúdo */}
     <motion.div
-      className="w-full relative flex flex-col items-center justify-center z-10"
+      className="w-full flex flex-col items-center justify-center relative overflow-hidden"
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, type: "spring", delay: 0.08 }}
-      style={{ minHeight: 500 }} // Aumenta a altura do banner
+      transition={{ duration: 0.6, type: "spring", delay: 0.08 }}
+      style={{ minHeight: "75vh", maxWidth: "100vw" }}
     >
+      {/* Imagem de fundo */}
       <img
         src="/assets/hero-img.jpg"
         alt="Equipe ZKX transporte de valores"
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         style={{
-          filter: "brightness(0.80)", // Menos escurecido para mostrar mais detalhes
-          minHeight: "100%",
-          maxHeight: "100%",
+          filter: "brightness(0.80)",
+          pointerEvents: "none",
+          userSelect: "none",
         }}
         loading="eager"
         draggable={false}
       />
-      {/* Conteúdo centralizado sobre a imagem */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.22, duration: 0.7, type: "spring" }}
-        className="flex flex-col items-center relative z-10"
+
+      {/* Conteúdo sobreposto à imagem */}
+      <div
+        className="relative w-full h-full flex flex-col items-center justify-center z-10"
+        style={{
+          paddingTop: "5vh",
+          paddingBottom: "72px",
+          maxWidth: "700px",
+          margin: "0 auto",
+        }}
       >
-        <img
-          src={LOGO}
-          alt="ZKX Logo"
-          className="h-36 md:h-44 w-auto mx-auto mb-9 select-none"
-          style={{ objectFit: "contain", maxWidth: "60vw", minHeight: 120 }}
-        />
         <h2
-          className="text-4xl md:text-5xl font-extrabold tracking-tight text-center mb-3"
+          className="text-3xl md:text-5xl font-extrabold tracking-tight text-center"
           style={{
             color: "#fff",
             letterSpacing: "0.018em",
-            marginBottom: "1.15rem",
-            textShadow:
-              "0 3px 22px rgba(21, 71, 35, 0.19), 0 1px 1px #113b2a80",
+            textShadow: "0 3px 22px rgba(21,71,35,.19),0 1px 1px #113b2a80",
+            marginBottom: 44, // AUMENTADO só aqui! (antes era 24 ou menos)
           }}
         >
           Quem é daqui, atende melhor.
         </h2>
+        <div
+          className="max-w-lg px-4 mb-0"
+          style={{
+            color: "#fff",
+            fontSize: "1.1rem",
+            fontWeight: 540,
+            lineHeight: 1.5,
+            textAlign: "justify",
+            whiteSpace: "pre-line",
+            textShadow: "0 1px 10px #0005",
+            marginBottom: 32,
+          }}
+        >
+          {description}
+        </div>
         <span
-          className="block text-lg md:text-xl font-normal"
+          className="block text-base md:text-xl font-normal text-center"
           style={{
             color: "#efefef",
             fontWeight: 400,
@@ -86,7 +92,7 @@ const HeroSection = () => (
             textShadow: "0 1px 12px #18332155",
           }}
         >
-          cuidamos do seu&nbsp;
+          cuidamos do seu{" "}
           <Typewriter
             words={typingWords}
             loop={0}
@@ -97,60 +103,28 @@ const HeroSection = () => (
             delaySpeed={1150}
           />
         </span>
-      </motion.div>
-    </motion.div>
+      </div>
 
-    {/* Texto corporativo centralizado, com espaçamento confortável */}
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.95, duration: 0.7, type: "spring" }}
-      className="w-full flex flex-col items-center"
-      style={{ marginTop: 64, marginBottom: 38 }}
-    >
+      {/* Botão no rodapé do banner */}
       <div
-        className="max-w-xl px-4 mx-auto"
-        style={{
-          color: VERDE,
-          fontSize: "1.22rem",
-          fontWeight: 540,
-          lineHeight: 1.58,
-          textAlign: "justify",
-          whiteSpace: "pre-line",
-        }}
+        className="absolute left-0 bottom-0 w-full flex justify-center pb-7"
+        style={{ pointerEvents: "auto" }}
       >
-        {description}
+        <Button
+          size="sm"
+          className="px-7 py-2 font-semibold rounded-full border bg-[#237E45dd] text-white/95
+            hover:bg-[#154723e7] hover:text-white transition duration-200
+            shadow-none opacity-92 backdrop-blur-[2px] text-center"
+          style={{
+            fontSize: "1.09rem",
+            background: "rgba(35, 126, 69, 0.89)",
+            border: "1.5px solid #efefef55",
+          }}
+        >
+          Solicitar uma Proposta
+        </Button>
       </div>
     </motion.div>
-
-    {/* Botão destacado, com grande margem abaixo */}
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.22, duration: 0.55, type: "spring" }}
-      className="flex justify-center w-full z-20 mb-14"
-    >
-      <Button
-        size="xl"
-        className="px-7 py-4 font-bold rounded-full border-2 border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:scale-105 hover:shadow-lg transition shadow-md"
-      >
-        Solicitar Cotação Segura <Shield className="ml-2 w-5 h-5" />
-      </Button>
-    </motion.div>
-
-    {/* Divider institucional, larga e elegante */}
-    <motion.hr
-      initial={{ scaleX: 0 }}
-      animate={{ scaleX: 1 }}
-      transition={{ delay: 1.41, duration: 0.6, type: "spring" }}
-      className="w-40 my-10 border-t-2 border-[#BFC8CC] mx-auto"
-      style={{
-        borderColor: PRATA,
-        borderRadius: 2,
-        marginTop: 54,
-        marginBottom: 24,
-      }}
-    />
   </section>
 )
 

@@ -84,7 +84,7 @@ export default function ClientsCarousel() {
             className="text-4xl lg:text-5xl font-black mb-2"
             style={{ color: VERDE }}
           >
-            Principais Clientes
+            Principais Atuações
           </h2>
           <p className="text-lg text-[#556267] max-w-2xl mx-auto font-medium">
             Atendemos diversos segmentos com soluções personalizadas, sempre
