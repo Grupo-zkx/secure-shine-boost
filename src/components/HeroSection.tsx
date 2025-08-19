@@ -2,16 +2,12 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Typewriter } from "react-simple-typewriter"
 
-const VERDE = "#237E45"
-const VERDE_ESCURO = "#154723"
-const PRATA = "#BFC8CC"
-
 const typingWords = [
-  "Transporte de numerário",
-  "Transporte de Joias e Metais",
-  "Abastecimento de ATMs",
-  "Processo de Coleta em Comércios",
-  "Processamento de Valores",
+  "transporte de numerário",
+  "transporte de joias e metais",
+  "abastecimento de ATMs",
+  "processo de coleta em comércios",
+  "processamento de valores",
 ]
 
 const description = `Protegemos o que é mais importante para seu negócio.
@@ -87,12 +83,11 @@ const HeroSection = () => (
           style={{
             color: "#efefef",
             fontWeight: 400,
-            textTransform: "lowercase",
             letterSpacing: "-0.01em",
             textShadow: "0 1px 12px #18332155",
           }}
         >
-          cuidamos do seu{" "}
+          Cuidamos do seu{" "}
           <Typewriter
             words={typingWords}
             loop={0}

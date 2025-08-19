@@ -10,7 +10,7 @@ import {
   ArrowRight,
   Shield,
 } from "lucide-react"
-import SolutionBanner from "@/components/Solutions/SolutionBanner"
+import SolutionBanner from "@/components/SolutionBanner"
 import { Link } from "react-router-dom"
 import { solutions } from "@/data/solutions"
 

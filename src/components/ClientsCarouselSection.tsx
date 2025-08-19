@@ -3,63 +3,35 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
+import { Card } from "@/components/ui/card"
 
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Building,
-  ShoppingBag,
-  Gem,
-  Landmark,
-  Factory,
-  Store,
-  CreditCard,
-  Coins,
-  Hospital,
-  GraduationCap,
-  Fuel,
-  Home,
-} from "lucide-react"
-
-// Paleta
 const VERDE = "#237E45"
-const PRATA = "#BFC8CC"
-const BRANCO = "#FFFFFF"
 
 const clientSegments = [
   {
     image: "/assets/carroussel/corporativo.jpg",
     text: "Bancos & Cooperativas",
     description: "Instituições financeiras de todos os portes",
-    icon: Landmark,
-    color: "from-[#237E45] to-[#3dbb78]", // verde gradiente
   },
   {
     image: "/assets/carroussel/varejo.jpg",
     text: "Varejo",
     description: "Redes de varejo e estabelecimentos comerciais",
-    icon: ShoppingBag,
-    color: "from-[#BFC8CC] to-[#98A9B6]", // prata/cinza azulado
   },
   {
     image: "/assets/carroussel/rede_combustivel.jpg",
     text: "Postos de Combustíveis",
     description: "Redes de postos de combustível",
-    icon: Fuel,
-    color: "from-[#f26907] to-[#ffb44d]", // laranja quente
   },
   {
     image: "/assets/carroussel/loterica.jpg",
     text: "Lotérica",
     description: "Casas lotéricas e jogos",
-    icon: Coins,
-    color: "from-[#6b5ca5] to-[#BFC8CC]", // roxo/prata
   },
   {
     image: "/assets/carroussel/farmacia.jpg",
     text: "Farmácia",
     description: "Redes de farmácias e drogarias",
-    icon: Hospital,
-    color: "from-[#d8344a] to-[#ffb1c0]", // vermelho/vinho suave
   },
 ]
 
@@ -106,69 +78,91 @@ export default function ClientsCarousel() {
           pagination={{ clickable: true }}
           loop
           autoplay={{
-            delay: 2500, // tempo entre slides (em ms)
-            disableOnInteraction: false, // continua após interação manual
+            delay: 2500,
+            disableOnInteraction: false,
           }}
           className="mb-16 px-2 select-none"
           style={{ paddingBottom: 48 }}
         >
-          {clientSegments.map((segment, idx) => {
-            const IconComponent = segment.icon
-            return (
-              <SwiperSlide key={segment.text}>
-                <Card
-                  className="group relative overflow-hidden border-none shadow-lg bg-white transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
-                  style={{
-                    borderRadius: 20,
-                    minHeight: 310,
-                    height: 350,
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  {/* Imagem de fundo maior - ocupando ~80% do card */}
-                  <div className="relative" style={{ flex: "0 0 80%" }}>
-                    <div className="h-56 w-full relative overflow-hidden">
-                      <img
-                        src={segment.image}
-                        alt={segment.text}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-800"
-                      />
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-t ${segment.color} via-[#0003] to-transparent opacity-80`}
-                      />
-                    </div>
-                    {/* Ícone grande */}
-                    <div className="absolute top-4 right-4 shadow-xl">
-                      <div
-                        className={`w-12 h-12 bg-gradient-to-br ${segment.color} rounded-xl flex items-center justify-center`}
-                      >
-                        <IconComponent className="w-7 h-7 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Conteúdo reduzido - classe px-3 py-3 para ocupar ~20% */}
-                  <CardContent
-                    className="pt-2 pb-2 px-3 flex flex-col items-center"
-                    style={{ flex: "1 0 20%", minHeight: 0 }}
-                  >
-                    <h3
-                      className="text-base font-extrabold mb-1 text-[#237E45] group-hover:text-black transition-colors duration-200 text-center"
-                      style={{ lineHeight: 1.1 }}
+          {clientSegments.map((segment) => (
+            <SwiperSlide key={segment.text}>
+              <Card
+                className="group relative overflow-hidden border-none shadow-lg bg-white transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
+                style={{
+                  borderRadius: 20,
+                  minHeight: 310,
+                  height: 350,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: 0,
+                }}
+              >
+                {/* Imagem ocupa o card inteiro */}
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <img
+                    src={segment.image}
+                    alt={segment.text}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    style={{
+                      borderRadius: 20,
+                      minHeight: 310,
+                      maxHeight: 350,
+                      height: 350,
+                    }}
+                  />
+                  {/* Título institucional centralizado */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span
+                      className="text-lg md:text-xl font-black uppercase text-white text-center"
+                      style={{
+                        opacity: 0.65,
+                        padding: "0.6em 1.2em",
+                        background:
+                          "linear-gradient(to bottom,rgba(0,0,0,0.19),rgba(0,0,0,0.04) 90%)",
+                        borderRadius: 13,
+                        textShadow: "0 2px 16px #15472344",
+                        letterSpacing: ".06em",
+                        lineHeight: 1.11,
+                        filter: "blur(.05px)",
+                        boxSizing: "border-box",
+                        fontWeight: 700,
+                        display: "block",
+                        pointerEvents: "none",
+                      }}
                     >
                       {segment.text}
-                    </h3>
-                    <p className="text-xs text-[#6a7682] text-center font-medium">
+                    </span>
+                  </div>
+                  {/* Overlay da descrição no hover, agora no bottom */}
+                  <div
+                    className="absolute left-0 right-0 bottom-0 flex items-end justify-center h-2/6 pointer-events-none transition-all duration-400"
+                    style={{ borderRadius: "0 0 20px 20px" }}
+                  >
+                    <span
+                      className="opacity-0 group-hover:opacity-100 w-full py-4 px-5 text-base font-medium leading-tight text-white text-center transition-opacity duration-400"
+                      style={{
+                        background:
+                          "linear-gradient(to top,rgba(0,0,0,0.74) 75%,transparent 100%)",
+                        borderRadius: "0 0 16px 16px",
+                        textShadow: "0 2px 22px #15472399",
+                        pointerEvents: "none",
+                        fontWeight: 500,
+                        fontSize: "1em",
+                        boxSizing: "border-box",
+                        maxWidth: "100%",
+                      }}
+                    >
                       {segment.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </SwiperSlide>
-            )
-          })}
+                    </span>
+                  </div>
+                </div>
+              </Card>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
-        {/* Stats animadas */}
+        {/* Stats institucionais (mantidas) */}
         <div className="rounded-2xl p-8 lg:p-12 mt-2 bg-[#237E45] flex flex-col md:flex-row justify-evenly items-center gap-9 animate-fade-in-up">
           {stats.map((stat, idx) => (
             <div
@@ -192,7 +186,6 @@ export default function ClientsCarousel() {
           ))}
         </div>
 
-        {/* Keyframes para animação extra */}
         <style>{`
           @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(40px); }
