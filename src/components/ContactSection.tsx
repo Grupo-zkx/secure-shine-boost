@@ -57,7 +57,7 @@ const services = [
 ]
 
 const ContactSection = () => (
-  <section id="contact" className="py-24 bg-[#f8fafb]">
+  <section id="contato" className="py-24 bg-[#f8fafb]">
     <div className="container mx-auto px-4">
       {/* Divisor/acento verde */}
       <div
@@ -274,7 +274,7 @@ const ContactSection = () => (
         </div>
       </div>
 
-      {/* Animações CSS (ou use framer-motion, se preferir) */}
+      {/* Animações CSS */}
       <style>{`
         @keyframes fade-in-up {
           from { opacity: 0; transform: translateY(36px);}

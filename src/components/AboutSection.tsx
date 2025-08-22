@@ -58,7 +58,7 @@ const certifications = [
 ]
 
 const AboutSection = () => (
-  <section id="about" className="py-24 bg-white relative">
+  <section id="sobre" className="py-24 bg-white relative">
     <div className="container mx-auto px-4">
       {/* QUEBRA VISUAL */}
       <div

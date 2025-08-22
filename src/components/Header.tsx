@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
 import { motion } from "framer-motion"
+import { Link, useLocation } from "react-router-dom"
 
 const VERDE = "#237E45"
 const PRATA = "#BFC8CC"
 const LOGO_COLORIDA = "/assets/logo/grupo_zkx.svg"
 const LOGO_BRANCA = "/assets/logo/grupo_zkx_branco.svg"
 
+// Use 'to' para compatibilidade com react-router Link
 const NAV_ITEMS = [
-  { label: "SOLUÇÕES", href: "/solucoes" },
-  { label: "SOBRE", href: "/#about" },
-  { label: "ATUAÇÃO", href: "/#clients" },
-  { label: "FALE CONOSCO", href: "/#contact" },
+  { label: "SOLUÇÕES", to: "/solucoes" },
+  { label: "SOBRE", to: "/#sobre" },
+  { label: "ATUAÇÃO", to: "/#atuacao" },
+  { label: "FALE CONOSCO", to: "/#contato" },
 ]
-const FULL_MENU = [{ label: "INÍCIO", href: "/" }, ...NAV_ITEMS]
+const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -65,8 +67,8 @@ export default function Header() {
           className="flex items-center justify-start flex-none pl-6"
           style={{ minWidth: 140 }}
         >
-          <a
-            href="#home"
+          <Link
+            to="/"
             className="relative flex items-center"
             style={{ overflow: "visible" }}
           >
@@ -82,14 +84,14 @@ export default function Header() {
                 marginBottom: "-7px",
               }}
             />
-          </a>
+          </Link>
         </div>
         {/* Links centralizados */}
         <div className="hidden md:flex flex-grow justify-center items-center gap-7">
           {FULL_MENU.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
+              to={item.to}
               className={`px-3 py-1 text-[1.21rem] font-semibold rounded transition-all duration-150
                 ${
                   isScrolled
@@ -101,9 +103,10 @@ export default function Header() {
                 transition: "color 0.22s, background 0.22s",
                 textTransform: "capitalize",
               }}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
         {/* Botão Portal 100% à direita */}
@@ -111,15 +114,16 @@ export default function Header() {
           className="flex items-center justify-end flex-none pr-6"
           style={{ minWidth: 140 }}
         >
-          <a
-            href="/portal"
+          <Link
+            to="/portal"
             className={`px-5 py-2 font-bold rounded-full text-[1.07rem] transition-all duration-150
               border border-[#237e45] bg-[#237E45]/90 text-white
               hover:bg-[#154723]/95 hover:text-[#BFC8CC]`}
             style={{ textTransform: "capitalize", letterSpacing: ".013em" }}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             Portal
-          </a>
+          </Link>
         </div>
         {/* Mobile burger menu */}
         <button
@@ -148,9 +152,9 @@ export default function Header() {
         >
           <div className="container mx-auto px-4 flex flex-col gap-1">
             {FULL_MENU.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.to}
                 className={`py-4 pl-3 text-lg font-semibold transition-all
                   ${
                     isScrolled
@@ -161,10 +165,10 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="/portal"
+            <Link
+              to="/portal"
               className={`mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white
                 hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150`}
               style={{
@@ -172,9 +176,10 @@ export default function Header() {
                 letterSpacing: ".012em",
                 textAlign: "center",
               }}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Portal
-            </a>
+            </Link>
           </div>
         </div>
       )}

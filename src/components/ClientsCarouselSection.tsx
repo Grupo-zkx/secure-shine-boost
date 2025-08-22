@@ -44,7 +44,7 @@ const stats = [
 
 export default function ClientsCarousel() {
   return (
-    <section id="clients" className="py-24 bg-[#f8fafb] overflow-hidden">
+    <section id="atuacao" className="py-36 bg-[#f8fafb] overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16 fade-in-up">
