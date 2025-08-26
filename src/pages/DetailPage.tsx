@@ -1,6 +1,7 @@
 import { useParams, Navigate } from "react-router-dom"
 import { solutions } from "@/data/solutions"
 import { motion } from "framer-motion"
+import { useEffect } from "react"
 
 const VERDE = "#237E45"
 const PRATA = "#BFC8CC"
@@ -81,6 +82,10 @@ const SolutionDetailBanner = ({ icon: Icon, title, description, img }: any) => (
 const SolutionDetailPage = () => {
   const { slug } = useParams()
   const solution = solutions.find((sol) => sol.slug === slug)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
   if (!solution) {
     // Redireciona para 404 caso slug não seja encontrado

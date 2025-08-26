@@ -58,46 +58,41 @@ export default function Header() {
         </div>
       </div>
       {/* Navbar principal com largura total */}
-      <nav
-        className="w-full flex items-center"
-        style={{ padding: "16px 0 0 0", minHeight: 65 }}
-      >
-        {/* Logo 100% à esquerda */}
+      <nav className="w-full flex items-center min-h-[65px] bg-transparent">
+        {/* Logo alinhado */}
         <div
-          className="flex items-center justify-start flex-none pl-6"
+          className="flex items-center justify-start flex-none pl-6 h-full"
           style={{ minWidth: 140 }}
         >
           <Link
             to="/"
-            className="relative flex items-center"
+            className="flex items-center h-full"
             style={{ overflow: "visible" }}
           >
             <img
               src={isScrolled ? LOGO_COLORIDA : LOGO_BRANCA}
               alt="Logo ZKX"
-              className="h-14 md:h-14 w-auto select-none transition-opacity duration-300"
+              className="h-14 w-auto select-none transition-opacity duration-300"
               style={{
                 maxHeight: 56,
                 minHeight: 44,
                 objectFit: "contain",
-                marginTop: "-8px",
-                marginBottom: "-7px",
               }}
             />
           </Link>
         </div>
         {/* Links centralizados */}
-        <div className="hidden md:flex flex-grow justify-center items-center gap-7">
+        <div className="hidden md:flex flex-grow justify-center items-center gap-7 h-full">
           {FULL_MENU.map((item) => (
             <Link
               key={item.label}
               to={item.to}
               className={`px-3 py-1 text-[1.21rem] font-semibold rounded transition-all duration-150
-                ${
-                  isScrolled
-                    ? "text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20"
-                    : "text-white hover:text-[#BFC8CC]/90"
-                }`}
+          ${
+            isScrolled
+              ? "text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20"
+              : "text-white hover:text-[#BFC8CC]/90"
+          } flex items-center h-full`}
               style={{
                 letterSpacing: ".014em",
                 transition: "color 0.22s, background 0.22s",
@@ -109,26 +104,34 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        {/* Botão Portal 100% à direita */}
+        {/* Botão Portal à direita */}
         <div
-          className="flex items-center justify-end flex-none pr-6"
+          className="flex items-center justify-end flex-none pr-6 h-full"
           style={{ minWidth: 140 }}
         >
           <Link
             to="/portal"
-            className={`px-5 py-2 font-bold rounded-full text-[1.07rem] transition-all duration-150
-              border border-[#237e45] bg-[#237E45]/90 text-white
-              hover:bg-[#154723]/95 hover:text-[#BFC8CC]`}
-            style={{ textTransform: "capitalize", letterSpacing: ".013em" }}
+            className={`px-4 py-1 font-bold rounded-full text-[0.97rem] transition-all duration-150 border
+      ${
+        isScrolled
+          ? "border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC]"
+          : "border-[#237E45] bg-white text-[#237E45] hover:bg-[#BFC8CC]/15 hover:text-[#154723]"
+      } flex items-center h-full`}
+            style={{
+              textTransform: "uppercase",
+              letterSpacing: ".01em",
+              textAlign: "center",
+            }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Portal
           </Link>
         </div>
+
         {/* Mobile burger menu */}
         <button
-          className={`md:hidden p-2 transition-colors absolute right-5 top-1 
-            ${isScrolled ? "text-[#237E45]" : "text-white"}`}
+          className={`md:hidden p-2 transition-colors absolute right-5 top-3
+      ${isScrolled ? "text-[#237E45]" : "text-white"} flex items-center`}
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
         >
@@ -139,6 +142,7 @@ export default function Header() {
           )}
         </button>
       </nav>
+
       {/* Menu mobile: TITULOS CAPITALIZADOS + Portal centralizado */}
       {isMobileMenuOpen && (
         <div

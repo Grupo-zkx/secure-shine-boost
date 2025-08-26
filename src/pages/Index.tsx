@@ -10,18 +10,20 @@ const Index = () => {
   const location = useLocation()
 
   useEffect(() => {
-    // Quando chegar na home com hash, faz scroll automático
+    // Scroll automático para o elemento hash, responsivo em todas telas
     if (location.hash) {
       const el = document.getElementById(location.hash.slice(1))
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" })
+        // marginTop mobile se existir sticky nav
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 16
+        window.scrollTo({ top: y, behavior: "smooth" })
       }
     }
   }, [location.hash])
 
   return (
-    <div className="min-h-screen">
-      <main>
+    <div className="min-h-screen bg-white">
+      <main className="w-full flex flex-col">
         <HeroSection />
         <AboutSection />
         <ClientsCarousel />

@@ -64,7 +64,7 @@ const Footer = () => (
                   fontWeight: 500,
                 }}
               >
-                Transporte de valores e segurança
+                ZKX TRANSPORTE DE VALORES E SEGURANÇA
               </span>
             </div>
           </div>
