@@ -90,7 +90,7 @@ export default function Header() {
         </div>
 
         {/* Botões à direita */}
-        <div className="flex items-center justify-end flex-none min-w-[180px] h-full gap-4">
+        <div className="hidden md:flex items-center justify-end flex-none w-auto h-full gap-4">
           <Link
             to="/portal"
             className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white
@@ -121,14 +121,14 @@ export default function Header() {
 
         {/* Mobile burger menu */}
         <button
-          className="md:hidden p-2 absolute right-5 top-3 text-[#237E45] flex items-center"
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-[#237E45] absolute right-5 top-3"
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
         >
           {isMobileMenuOpen ? (
-            <X className="w-7 h-7" />
+            <X className="w-6 h-6 text-white" />
           ) : (
-            <Menu className="w-7 h-7" />
+            <Menu className="w-6 h-6 text-white" />
           )}
         </button>
       </nav>

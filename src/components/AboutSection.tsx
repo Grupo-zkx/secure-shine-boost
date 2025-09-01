@@ -28,7 +28,7 @@ const values = [
     img: "/assets/about-icons/seguranca-total.png",
     title: "Segurança Total",
     description:
-      "Protecão máxima de valores e patrimonios, com tecnologia de ponta e protocolos rígorosos.",
+      "Protecão máxima de valores e patrimônios, com tecnologia de ponta e protocolos rígorosos.",
   },
   {
     img: "/assets/about-icons/integridade-credibilidade.png",
@@ -78,95 +78,126 @@ const AboutSection = () => (
       </div>
 
       <div className="w-full px-6 md:px-12 lg:px-24 mb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-16 relative">
-          {/* Marca d'água só para esta área */}
-          <img
-            src="/assets/logo/grupo_zkx.svg"
-            alt="Marca d'água Grupo ZKX"
-            className="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none select-none"
-            aria-hidden="true"
-          />
+        <div className="relative mb-16">
+          {/* Grid das duas colunas com marca d'água */}
+          <div className="grid lg:grid-cols-2 gap-16 items-start relative">
+            {/* Marca d'água */}
+            <img
+              src="/assets/logo/grupo_zkx.svg"
+              alt="Marca d'água Grupo ZKX"
+              className="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none select-none"
+              aria-hidden="true"
+            />
 
-          {/* Nossa História */}
-          <div className="space-y-10 relative z-10">
-            <div className="space-y-4">
-              <h3
-                className="text-2xl lg:text-3xl font-bold"
-                style={{ color: VERDE }}
-              >
-                Nossa História
-              </h3>
-              <div className="text-base text-[#5a666c] space-y-4 leading-relaxed">
-                <p>
-                  A trajetória do Grupo ZKX tem início com a inspiração do seu
-                  fundador, <strong>José Carlos Carvalho</strong>, que começou
-                  sua vida profissional no setor bancário, onde desenvolveu um
-                  profundo entendimento sobre responsabilidade, compromisso e
-                  organização. Ainda jovem, despertou seu espírito empreendedor
-                  e deu o primeiro passo ousado: adquiriu sua primeira empresa,
-                  uma casa lotérica.
-                </p>
-                <p>
-                  Com trabalho árduo, visão estratégica e dedicação à
-                  excelência, construiu uma carreira sólida, tornando-se
-                  referência nacional no setor lotérico. Ao longo dos anos,
-                  chegou a administrar mais de 33 casas lotéricas no estado do
-                  Rio de Janeiro e, em reconhecimento ao seu desempenho, foi
-                  condecorado em Brasília pela Caixa Econômica Federal como o
-                  maior lotérico do Brasil.{" "}
-                  <strong>
-                    Atualmente, continua ativo no setor, com aproximadamente 20
-                    lotéricas em operação, além de exercer o cargo de
-                    vice-presidente do SINCOERJ – Sindicato dos Lotéricos do
-                    Estado do Rio de Janeiro
-                  </strong>
-                  .
-                </p>
-                <p>
-                  A expansão dos negócios não parou por aí.{" "}
-                  <strong>O Grupo</strong> diversificou suas atividades,
-                  investindo em farmácias, restaurantes, lanchonetes, construção
-                  civil e incorporação imobiliária, sempre pautado pelos mesmos
-                  valores: qualidade, solidez e inovação.
-                </p>
+            <div className="flex flex-col justify-between h-full relative z-10">
+              {/* Nossa História */}
+              <div className="space-y-4">
+                <h3
+                  className="text-2xl lg:text-3xl font-bold"
+                  style={{ color: VERDE }}
+                >
+                  Nossa História
+                </h3>
+                <div className="text-base text-[#5a666c] space-y-4 leading-relaxed">
+                  <p>
+                    A trajetória do Grupo ZKX tem início com a inspiração do seu
+                    fundador, José Carlos Carvalho, que começou sua vida
+                    profissional no setor bancário, onde desenvolveu um profundo
+                    entendimento sobre responsabilidade, compromisso e
+                    organização. Ainda jovem, despertou seu espírito
+                    empreendedor e deu o primeiro passo ousado: adquiriu sua
+                    primeira empresa, uma casa lotérica.
+                  </p>
+                  <p>
+                    Com trabalho árduo, visão estratégica e dedicação à
+                    excelência, construiu uma carreira sólida, tornando-se
+                    referência nacional no setor lotérico. Ao longo dos anos,
+                    chegou a administrar mais de 33 casas lotéricas no estado do
+                    Rio de Janeiro e, em reconhecimento ao seu desempenho, foi
+                    condecorado em Brasília pela Caixa Econômica Federal como o
+                    maior lotérico do Brasil. Atualmente, continua ativo no
+                    setor, com aproximadamente 20 lotéricas em operação, além de
+                    exercer o cargo de vice-presidente do SINCOERJ – Sindicato
+                    dos Lotéricos do Estado do Rio de Janeiro.
+                  </p>
+                  <p>
+                    A expansão dos negócios não parou por aí. O Grupo
+                    diversificou suas atividades, investindo em farmácias,
+                    restaurantes, lanchonetes, construção civil e incorporação
+                    imobiliária, sempre pautado pelos mesmos valores: qualidade,
+                    solidez e inovação.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Nossa Missão */}
-          <div className="space-y-10">
-            <div className="space-y-4">
-              <h3
-                className="text-2xl lg:text-3xl font-bold"
-                style={{ color: VERDE }}
-              >
-                Nossa Missão
-              </h3>
-              <div className="text-base text-[#5a666c] space-y-4 leading-relaxed">
-                <p>
-                  <strong>
+            <div className="flex flex-col justify-between h-full relative z-10">
+              {/* Nossa Missão */}
+              <div>
+                <h3
+                  className="text-2xl lg:text-3xl font-bold mb-2"
+                  style={{ color: VERDE }}
+                >
+                  Nossa Missão
+                </h3>
+                <div className="text-base text-[#5a666c] space-y-4 leading-relaxed">
+                  <p>
                     Garantir segurança, confiabilidade e excelência operacional
-                    no transporte de valores
-                  </strong>
-                  , por meio de soluções inteligentes, tecnologia de ponta e uma
-                  equipe altamente capacitada.
-                </p>
-                <p>
-                  A{" "}
-                  <strong>nasceu para ir além da prestação de serviços:</strong>{" "}
-                  é a materialização de uma trajetória de credibilidade
-                  construída ao longo de décadas.
-                </p>
-                <p>
-                  Nosso objetivo é consolidar a ZKX como a maior e mais
-                  respeitada empresa de transporte de valores do estado do Rio
-                  de Janeiro. Para isso, investimos continuamente em:
-                </p>
-                <p>
-                  Com integridade, comprometimento e foco no cliente, seguimos
-                  um caminho claro: crescer com solidez e transformar o mercado
-                  de transporte de valores e segurança.
-                </p>
+                    no transporte de valores, por meio de soluções inteligentes,
+                    tecnologia de ponta e uma equipe altamente capacitada.
+                  </p>
+                  <p>
+                    A ZKX nasceu para ir além da prestação de serviços: é a
+                    materialização de uma trajetória de credibilidade construída
+                    ao longo de décadas.
+                  </p>
+                </div>
+
+                {/* Nosso Futuro */}
+                <div>
+                  <h3
+                    className="text-2xl lg:text-3xl font-bold mb-2"
+                    style={{ color: VERDE }}
+                  >
+                    Nosso Futuro
+                  </h3>
+                  <div className="space-y-2">
+                    <p>
+                      Nosso objetivo é consolidar a ZKX como a maior e mais
+                      respeitada empresa de transporte de valores do estado do
+                      Rio de Janeiro. Para isso, investimos continuamente em:
+                    </p>
+                    <ul
+                      className="list-disc list-inside ps-6 my-1 italic"
+                      style={{ fontWeight: 100 }}
+                    >
+                      <li>Frota blindada moderna.</li>
+                      <li>Sistemas de monitoramento de última geração.</li>
+                      <li>Desenvolvimento humano e profissional da equipe.</li>
+                      <li>
+                        Inovação e tecnologia aplicada à segurança patrimonial.
+                      </li>
+                    </ul>
+                    <p>
+                      Com integridade, comprometimento e foco no cliente,
+                      seguimos um caminho claro: crescer com solidez e
+                      transformar o mercado de transporte de valores e
+                      segurança.
+                    </p>
+                  </div>
+                </div>
+                {/* Nosso Lema */}
+                <div className="py-5">
+                  <h3
+                    className="text-2xl lg:text-3xl font-bold mb-2"
+                    style={{ color: VERDE }}
+                  >
+                    Nosso Lema
+                  </h3>
+                  <p className="text-base text-[#5a666c] leading-relaxed">
+                    Quem é daqui, atende melhor
+                  </p>
+                </div>
               </div>
             </div>
           </div>
