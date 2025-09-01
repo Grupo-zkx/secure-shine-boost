@@ -126,7 +126,11 @@ export default function ClientsCarousel() {
                         background:
                           "linear-gradient(to bottom,rgba(0,0,0,0.19),rgba(0,0,0,0.04) 90%)",
                         borderRadius: 13,
-                        textShadow: "0 2px 16px #15472344",
+                        textShadow: `
+                          0 2px 6px rgba(0,0,0,0.7),
+                          0 4px 12px rgba(0,0,0,0.6),
+                          0 0 18px rgba(21,71,35,0.8)
+                        `,
                         letterSpacing: ".06em",
                         lineHeight: 1.11,
                         filter: "blur(.05px)",

@@ -9,12 +9,6 @@ const BRANCO = "#FFFFFF"
 
 const values = [
   {
-    img: "/assets/about-icons/seguranca-total.png",
-    title: "Segurança Total",
-    description:
-      "Protecão máxima de valores e patrimonios, com tecnologia de ponta e protocolos rígorosos.",
-  },
-  {
     img: "/assets/about-icons/compromisso-cliente.png",
     title: "Compromisso com o cliente",
     description:
@@ -29,6 +23,12 @@ const values = [
     img: "/assets/about-icons/inovacao-constante.png",
     title: "Inovacao constante",
     description: "Soluções inteligentes para um setor em transformação.",
+  },
+  {
+    img: "/assets/about-icons/seguranca-total.png",
+    title: "Segurança Total",
+    description:
+      "Protecão máxima de valores e patrimonios, com tecnologia de ponta e protocolos rígorosos.",
   },
   {
     img: "/assets/about-icons/integridade-credibilidade.png",
@@ -46,7 +46,14 @@ const values = [
 // ]
 
 const AboutSection = () => (
-  <section id="sobre" className="py-24 bg-white relative">
+  <section id="sobre" className="pt-20 bg-white relative">
+    {/* Marca d'água */}
+    <img
+      src="/assets/logo/grupo_zkx.svg"
+      alt="Marca d'água Grupo ZKX"
+      className="absolute inset-0 w-full h-full object-contain opacity-5 pointer-events-none select-none"
+      aria-hidden="true"
+    />
     <div className="container mx-auto px-4">
       {/* QUEBRA VISUAL */}
       <div
@@ -171,24 +178,29 @@ const AboutSection = () => (
           >
             Nossos Pilares
           </h3>
-          <div className="flex flex-wrap justify-center gap-12 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10 mt-6 justify-items-center">
             {values.map(({ img, title, description }) => (
               <div
                 key={title}
-                className="flex flex-col items-center justify-center max-w-xs text-center"
+                className="flex flex-col items-center text-center px-4 max-w-xs"
               >
                 <img
                   src={img}
-                  className="w-14 h-14 object-contain p-2 mb-4"
+                  className="w-16 h-16 object-contain mb-4"
                   alt={title}
                 />
                 <h3
-                  className="text-lg font-bold mb-1 uppercase"
+                  className="text-lg font-bold mb-2 uppercase"
                   style={{ color: VERDE }}
                 >
                   {title}
                 </h3>
-                <p style={{ color: VERDE }}>{description}</p>
+                <p
+                  className="text-sm"
+                  style={{ color: VERDE, fontWeight: 200 }}
+                >
+                  {description}
+                </p>
               </div>
             ))}
           </div>

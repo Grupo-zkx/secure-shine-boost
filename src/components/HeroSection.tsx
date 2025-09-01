@@ -95,30 +95,6 @@ const HeroSection = () => (
                   draggable={false}
                 />
               </div>
-
-              {/* Logo à direita com “empurrão” controlado */}
-              {/* <div
-                className="
-            col-span-12 md:col-span-3
-            flex md:justify-end justify-center md:items-start items-center md:mt-0 mt-4
-            md:pr-4
-            md:translate-x-2
-            lg:pr-6 lg:translate-x-3
-          "
-              >
-                <img
-                  src="/assets/logo/grupo_zkx_branco.svg"
-                  alt="ZKX - Transporte de Valores e Segurança"
-                  className="block"
-                  style={{
-                    width: "180px",
-                    height: "auto",
-                    filter: "drop-shadow(0 4px 22px rgba(0,0,0,.25))",
-                  }}
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div> */}
             </div>
 
             {/* Espaçador entre descrição e typing/CTA */}
