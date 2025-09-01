@@ -85,7 +85,7 @@ const AboutSection = () => (
             <img
               src="/assets/logo/grupo_zkx.svg"
               alt="Marca d'água Grupo ZKX"
-              className="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none select-none"
+              className="absolute inset-0 w-full h-full object-contain opacity-15 pointer-events-none select-none"
               aria-hidden="true"
             />
 
