@@ -102,10 +102,10 @@ export default function Header() {
             }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Portal
+            Area Cliente
           </Link>
           <Link
-            to="/#contato"
+            to="/restrita"
             className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45]
               hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
             style={{
@@ -115,7 +115,7 @@ export default function Header() {
             }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Contato
+            Area Restrita
           </Link>
         </div>
 

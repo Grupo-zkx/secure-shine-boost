@@ -48,14 +48,14 @@ const HeroSection = () => (
           gridTemplateRows: "auto 1fr auto",
         }}
       >
-        {/* TOPO: conteúdo central + logo à direita, mesmo alinhamento vertical */}
+        {/* TOPO: conteúdo central + logo */}
         <div className="w-full">
           <div
             className="mx-auto w-full px-4 md:px-6 lg:px-8"
             style={{ maxWidth: 1200, paddingTop: "6vh" }}
           >
             {/* Grid superior: 1 | 8 | 3 (texto largo). Ajuste aqui se quiser ainda mais espaço */}
-            <div className="grid grid-cols-12 items-start gap-4 md:gap-6">
+            <div className="grid items-start gap-4 md:gap-6">
               <div className="hidden md:block md:col-span-1" />
               <div className="col-span-12 md:col-span-8 flex flex-col items-center">
                 <h1
@@ -82,10 +82,22 @@ const HeroSection = () => (
                 >
                   {heroDescription}
                 </p>
+                <img
+                  src="/assets/logo/grupo_zkx_branco.svg"
+                  alt="ZKX - Transporte de Valores e Segurança"
+                  className="mt-6 block"
+                  style={{
+                    width: "180px",
+                    height: "auto",
+                    filter: "drop-shadow(0 4px 22px rgba(0,0,0,.25))",
+                  }}
+                  loading="lazy"
+                  draggable={false}
+                />
               </div>
 
               {/* Logo à direita com “empurrão” controlado */}
-              <div
+              {/* <div
                 className="
             col-span-12 md:col-span-3
             flex md:justify-end justify-center md:items-start items-center md:mt-0 mt-4
@@ -106,7 +118,7 @@ const HeroSection = () => (
                   loading="lazy"
                   draggable={false}
                 />
-              </div>
+              </div> */}
             </div>
 
             {/* Espaçador entre descrição e typing/CTA */}
