@@ -48,12 +48,15 @@ const contactInfo = [
 ]
 
 const services = [
-  "Transporte de numerário",
-  "Transporte de valores",
-  "Abastecimento de ATMs",
-  "Coleta em comércios",
-  "Processamento de valores",
-  "Consultoria em segurança",
+  "transporte de valores",
+  "segurança patrimonial",
+  "escolta armada",
+  "transporte de carga segura",
+  "monitoramento de alarmes",
+  "monitoramento de cameras",
+  "cofres inteligentes",
+  "abastecimento de ATMs",
+  "processamento de valores",
 ]
 
 const ContactSection = () => (
@@ -146,7 +149,7 @@ const ContactSection = () => (
                       {services.map((service) => (
                         <label
                           key={service}
-                          className="flex items-center gap-2 text-sm font-normal"
+                          className="flex items-center gap-2 text-sm font-normal capitalize"
                         >
                           <input
                             type="checkbox"

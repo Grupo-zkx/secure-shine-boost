@@ -1,45 +1,28 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
-import { motion } from "framer-motion"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const VERDE = "#237E45"
 const PRATA = "#BFC8CC"
-const LOGO_COLORIDA = "/assets/logo/grupo_zkx.svg"
-const LOGO_BRANCA = "/assets/logo/grupo_zkx_branco.svg"
 
-// Use 'to' para compatibilidade com react-router Link
+const LOGO_COLORIDA = "/assets/logo/logo_zkx_horizontal.png"
+
 const NAV_ITEMS = [
-  { label: "SOLUÇÕES", to: "/solucoes" },
   { label: "SOBRE", to: "/#sobre" },
   { label: "ATUAÇÃO", to: "/#atuacao" },
-  { label: "FALE CONOSCO", to: "/#contato" },
+  { label: "SOLUÇÕES", to: "/solucoes" },
+  { label: "PROPOSTA", to: "/#contato" },
 ]
 const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.41, 1, 0.38, 1] }}
-      className="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
-      style={{
-        background: isScrolled ? "#fff" : "transparent",
-        borderBottom: isScrolled ? `1.7px solid ${PRATA}44` : "none",
-        boxShadow: isScrolled ? "0 2px 8px rgba(0,0,0,0.06)" : "none",
-      }}
+    <header
+      className="sticky top-0 left-0 w-full z-50 bg-white border-b"
+      style={{ borderColor: `${PRATA}44` }}
     >
-      {/* Topbar institucional sempre visível */}
       <div
         className="hidden sm:flex w-full text-xs h-8 px-6 items-center justify-between"
         style={{ background: PRATA, color: VERDE, fontWeight: 500 }}
@@ -50,88 +33,95 @@ export default function Header() {
         </div>
         <div className="flex gap-4 items-center font-medium">
           <span className="flex items-center gap-1">
-            <Phone className="w-3 h-3" /> 0800 349 8027
+            <Link
+              to="/trabalhe-conosco"
+              className="font-bold uppercase hover:underline"
+            >
+              trabalhe conosco
+            </Link>
           </span>
           <span className="flex items-center gap-1">
-            <Mail className="w-3 h-3" /> contato@grupozkx.com.br
+            <Phone className="w-3 h-3" />
+            0800 349 8027
+          </span>
+          <span className="flex items-center gap-1">
+            <Mail className="w-3 h-3" />
+            <a
+              href="mailto:contato@grupozkx.com.br"
+              className="hover:underline"
+            >
+              contato@grupozkx.com.br
+            </a>
           </span>
         </div>
       </div>
-      {/* Navbar principal com largura total */}
-      <nav className="w-full flex items-center min-h-[65px] bg-transparent">
-        {/* Logo alinhado */}
-        <div
-          className="flex items-center justify-start flex-none pl-6 h-full"
-          style={{ minWidth: 140 }}
-        >
-          <Link
-            to="/"
-            className="flex items-center h-full"
-            style={{ overflow: "visible" }}
-          >
+
+      {/* Navbar principal */}
+      <nav className="flex items-center justify-between px-6 min-h-[72px]">
+        {/* LOGO horizontal */}
+        <div className="flex items-center flex-none min-w-[160px] h-full pr-4">
+          <Link to="/" className="flex items-center h-full">
             <img
-              src={isScrolled ? LOGO_COLORIDA : LOGO_BRANCA}
+              src={LOGO_COLORIDA}
               alt="Logo ZKX"
-              className="h-14 w-auto select-none transition-opacity duration-300"
+              className="max-h-12 max-w-[310px] w-auto h-auto select-none"
               style={{
-                maxHeight: 56,
-                minHeight: 44,
                 objectFit: "contain",
+                display: "block",
               }}
             />
           </Link>
         </div>
+
         {/* Links centralizados */}
-        <div className="hidden md:flex flex-grow justify-center items-center gap-7 h-full">
+        <div className="hidden md:flex flex-grow justify-center items-center gap-6 h-full">
           {FULL_MENU.map((item) => (
             <Link
               key={item.label}
               to={item.to}
-              className={`px-3 py-1 text-[1.21rem] font-semibold rounded transition-all duration-150
-          ${
-            isScrolled
-              ? "text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20"
-              : "text-white hover:text-[#BFC8CC]/90"
-          } flex items-center h-full`}
-              style={{
-                letterSpacing: ".014em",
-                transition: "color 0.22s, background 0.22s",
-                textTransform: "capitalize",
-              }}
+              className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150
+                text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
+              style={{ letterSpacing: ".013em", textTransform: "capitalize" }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}
             </Link>
           ))}
         </div>
-        {/* Botão Portal à direita */}
-        <div
-          className="flex items-center justify-end flex-none pr-6 h-full"
-          style={{ minWidth: 140 }}
-        >
+
+        {/* Botões à direita */}
+        <div className="flex items-center justify-end flex-none min-w-[180px] h-full gap-4">
           <Link
             to="/portal"
-            className={`px-4 py-1 font-bold rounded-full text-[0.97rem] transition-all duration-150 border
-      ${
-        isScrolled
-          ? "border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC]"
-          : "border-[#237E45] bg-white text-[#237E45] hover:bg-[#BFC8CC]/15 hover:text-[#154723]"
-      } flex items-center h-full`}
+            className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white
+              hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
             style={{
               textTransform: "uppercase",
-              letterSpacing: ".01em",
+              letterSpacing: ".02em",
               textAlign: "center",
             }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Portal
           </Link>
+          <Link
+            to="/#contato"
+            className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45]
+              hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
+            style={{
+              textTransform: "uppercase",
+              letterSpacing: ".02em",
+              textAlign: "center",
+            }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contato
+          </Link>
         </div>
 
         {/* Mobile burger menu */}
         <button
-          className={`md:hidden p-2 transition-colors absolute right-5 top-3
-      ${isScrolled ? "text-[#237E45]" : "text-white"} flex items-center`}
+          className="md:hidden p-2 absolute right-5 top-3 text-[#237E45] flex items-center"
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
         >
@@ -143,15 +133,10 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Menu mobile: TITULOS CAPITALIZADOS + Portal centralizado */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div
-          className={`md:hidden border-t absolute left-0 w-full z-50 transition-colors duration-300
-            ${
-              isScrolled
-                ? "bg-white text-[#237E45] border-[#BFC8CC]/40"
-                : "bg-[#237E45]/95 text-white border-white/10"
-            }`}
+          className="md:hidden border-t absolute left-0 w-full z-50 bg-white text-[#237E45] border-[#BFC8CC]/40"
           style={{ top: "100%" }}
         >
           <div className="container mx-auto px-4 flex flex-col gap-1">
@@ -159,12 +144,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 to={item.to}
-                className={`py-4 pl-3 text-lg font-semibold transition-all
-                  ${
-                    isScrolled
-                      ? "hover:bg-[#BFC8CC]/25"
-                      : "hover:bg-[#1A663A]/40"
-                  }`}
+                className="py-4 pl-3 text-lg font-semibold hover:bg-[#BFC8CC]/25 transition-all"
                 style={{ textTransform: "capitalize" }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -173,10 +153,10 @@ export default function Header() {
             ))}
             <Link
               to="/portal"
-              className={`mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white
-                hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150`}
+              className="mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white
+                hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150"
               style={{
-                textTransform: "capitalize",
+                textTransform: "uppercase",
                 letterSpacing: ".012em",
                 textAlign: "center",
               }}
@@ -184,9 +164,22 @@ export default function Header() {
             >
               Portal
             </Link>
+            <Link
+              to="/#contato"
+              className="mb-3 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-white text-[#237E45]
+                hover:bg-[#237E45]/10 hover:text-[#154723] mx-auto transition-all duration-150"
+              style={{
+                textTransform: "uppercase",
+                letterSpacing: ".012em",
+                textAlign: "center",
+              }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contato
+            </Link>
           </div>
         </div>
       )}
-    </motion.header>
+    </header>
   )
 }

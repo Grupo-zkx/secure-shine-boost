@@ -33,11 +33,16 @@ const clientSegments = [
     text: "Farmácia",
     description: "Redes de farmácias e drogarias",
   },
+  {
+    image: "/assets/carroussel/supermercado.jpg",
+    text: "Mercado, Supermercado e Hipermercado",
+    description: "Redes de mercados, supermercados e hipermercados",
+  },
 ]
 
 const stats = [
   { value: "300+", label: "Clientes Ativos" },
-  { value: "5", label: "Segmentos Atendidos" },
+  { value: clientSegments.length, label: "Segmentos Atendidos" },
   { value: "20+", label: "Anos de Experiência" },
   { value: "100%", label: "Segurança Garantida" },
 ]

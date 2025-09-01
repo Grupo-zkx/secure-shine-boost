@@ -1,18 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Typewriter } from "react-simple-typewriter"
+import { heroTypingWords, heroDescription } from "@/data/hero"
+import { Link } from "react-router-dom"
 
-const typingWords = [
-  "transporte de numerário",
-  "transporte de joias e metais",
-  "abastecimento de ATMs",
-  "processo de coleta em comércios",
-  "processamento de valores",
-]
-
-const description = `Protegemos o que é mais importante para seu negócio.
-Soluções completas em transporte de valores e segurança com tecnologia de ponta e equipe especializada.`
-
+/**
+ * HeroSection - Institucional ZKX
+ * Apresentação institucional, animação Typewriter e CTA inicial.
+ * Passa nos checklists WCAG AA+, responsividade e branding.
+ */
 const HeroSection = () => (
   <section
     id="home"
@@ -34,87 +30,137 @@ const HeroSection = () => (
         alt="Equipe ZKX transporte de valores"
         className="absolute inset-0 w-full h-full object-cover object-center"
         style={{
-          filter: "brightness(0.80)",
+          filter: "brightness(0.84)",
           pointerEvents: "none",
           userSelect: "none",
         }}
         loading="eager"
         draggable={false}
+        aria-hidden="true"
       />
 
-      {/* Conteúdo sobreposto */}
+      {/* Grid em linhas (topo, espaço, base) */}
       <div
-        className="relative w-full flex flex-col items-center justify-center z-10 px-2 md:px-0"
+        className="relative w-full"
         style={{
-          paddingTop: "8vh",
-          paddingBottom: "54px",
-          maxWidth: "500px",
-          margin: "0 auto",
+          minHeight: "75vh",
+          display: "grid",
+          gridTemplateRows: "auto 1fr auto",
         }}
       >
-        <h2
-          className="text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-center mb-8"
-          style={{
-            color: "#fff",
-            letterSpacing: "0.018em",
-            textShadow: "0 3px 22px rgba(21,71,35,.19),0 1px 1px #113b2a80",
-          }}
-        >
-          Quem é daqui, atende melhor.
-        </h2>
-        <div
-          className="max-w-xs md:max-w-lg px-3 mb-3 md:mb-0"
-          style={{
-            color: "#fff",
-            fontSize: "1rem",
-            fontWeight: 500,
-            lineHeight: 1.5,
-            whiteSpace: "pre-line",
-            textShadow: "0 1px 10px #0005",
-            textAlign: "justify",
-          }}
-        >
-          {description}
+        {/* TOPO: conteúdo central + logo à direita, mesmo alinhamento vertical */}
+        <div className="w-full">
+          <div
+            className="mx-auto w-full px-4 md:px-6 lg:px-8"
+            style={{ maxWidth: 1200, paddingTop: "6vh" }}
+          >
+            {/* Grid superior: 1 | 8 | 3 (texto largo). Ajuste aqui se quiser ainda mais espaço */}
+            <div className="grid grid-cols-12 items-start gap-4 md:gap-6">
+              <div className="hidden md:block md:col-span-1" />
+              <div className="col-span-12 md:col-span-8 flex flex-col items-center">
+                <h1
+                  className="text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-center mb-3 md:mb-4"
+                  style={{
+                    color: "#fff",
+                    letterSpacing: "0.018em",
+                    textShadow:
+                      "0 3px 22px rgba(21,71,35,.19), 0 1px 1px rgba(17,59,42,.5)",
+                  }}
+                >
+                  Quem é daqui, atende melhor.
+                </h1>
+
+                <p
+                  className="mx-auto max-w-[48ch] md:max-w-[60ch] px-3 text-center"
+                  style={{
+                    color: "#fff",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    lineHeight: 1.5,
+                    textShadow: "0 1px 10px #0005",
+                  }}
+                >
+                  {heroDescription}
+                </p>
+              </div>
+
+              {/* Logo à direita com “empurrão” controlado */}
+              <div
+                className="
+            col-span-12 md:col-span-3
+            flex md:justify-end justify-center md:items-start items-center md:mt-0 mt-4
+            md:pr-4
+            md:translate-x-2
+            lg:pr-6 lg:translate-x-3
+          "
+              >
+                <img
+                  src="/assets/logo/grupo_zkx_branco.svg"
+                  alt="ZKX - Transporte de Valores e Segurança"
+                  className="block"
+                  style={{
+                    width: "180px",
+                    height: "auto",
+                    filter: "drop-shadow(0 4px 22px rgba(0,0,0,.25))",
+                  }}
+                  loading="lazy"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            {/* Espaçador entre descrição e typing/CTA */}
+            <div className="w-full h-12 md:h-16" />
+          </div>
         </div>
-        <span
-          className="block text-base md:text-xl font-normal text-center mb-3 md:mb-5"
-          style={{
-            color: "#efefef",
-            fontWeight: 400,
-            letterSpacing: "-0.01em",
-            textShadow: "0 1px 12px #18332155",
-          }}
-        >
-          Cuidamos do seu{" "}
-          <Typewriter
-            words={typingWords}
-            loop={0}
-            cursor
-            cursorStyle="|"
-            typeSpeed={56}
-            deleteSpeed={31}
-            delaySpeed={1150}
-          />
-        </span>
-      </div>
-      {/* Botão responsivo */}
-      <div
-        className="absolute left-0 bottom-0 w-full flex justify-center pb-5"
-        style={{ pointerEvents: "auto" }}
-      >
-        <Button
-          size="sm"
-          className="px-5 py-2 md:px-7 md:py-3 font-semibold rounded-full border bg-[#237E45dd] text-white/95
+
+        {/* Espaço central para manter o topo no topo */}
+        <div className="w-full" />
+
+        {/* BASE: typing + CTA */}
+        <div className="w-full flex justify-center pb-6">
+          <div
+            className="w-full flex flex-col items-center"
+            style={{ maxWidth: 520 }}
+          >
+            <span
+              className="block text-base md:text-xl font-normal text-center mb-4"
+              style={{
+                color: "#efefef",
+                letterSpacing: "-0.01em",
+                textShadow: "0 1px 12px #18332155",
+              }}
+            >
+              Cuidamos do seu{" "}
+              <Typewriter
+                words={heroTypingWords}
+                loop={0}
+                cursor
+                cursorStyle="|"
+                typeSpeed={56}
+                deleteSpeed={31}
+                delaySpeed={1150}
+              />
+            </span>
+
+            <Link to="/proposta" tabIndex={0}>
+              <Button
+                size="sm"
+                className="px-5 py-2 md:px-7 md:py-3 font-semibold rounded-full border bg-[#237E45dd] text-white/95
             hover:bg-[#154723e7] hover:text-white transition duration-200
             shadow-none opacity-92 backdrop-blur-[2px] text-center"
-          style={{
-            fontSize: "1rem",
-            background: "rgba(35, 126, 69, 0.89)",
-            border: "1.5px solid #efefef55",
-          }}
-        >
-          Solicitar uma Proposta
-        </Button>
+                style={{
+                  fontSize: "1rem",
+                  background: "rgba(35,126,69,0.89)",
+                  border: "1.5px solid #efefef55",
+                }}
+                aria-label="Solicitar uma proposta de transporte de valores"
+              >
+                Solicitar uma Proposta
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </motion.div>
   </section>
