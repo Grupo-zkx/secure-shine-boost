@@ -48,12 +48,6 @@ const values = [
 const AboutSection = () => (
   <section id="sobre" className="pt-20 bg-white relative">
     {/* Marca d'água */}
-    <img
-      src="/assets/logo/grupo_zkx.svg"
-      alt="Marca d'água Grupo ZKX"
-      className="absolute inset-0 w-full h-full object-contain opacity-5 pointer-events-none select-none"
-      aria-hidden="true"
-    />
     <div className="container mx-auto px-4">
       {/* QUEBRA VISUAL */}
       <div
@@ -84,9 +78,17 @@ const AboutSection = () => (
       </div>
 
       <div className="w-full px-6 md:px-12 lg:px-24 mb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-16 relative">
+          {/* Marca d'água só para esta área */}
+          <img
+            src="/assets/logo/grupo_zkx.svg"
+            alt="Marca d'água Grupo ZKX"
+            className="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none select-none"
+            aria-hidden="true"
+          />
+
           {/* Nossa História */}
-          <div className="space-y-10">
+          <div className="space-y-10 relative z-10">
             <div className="space-y-4">
               <h3
                 className="text-2xl lg:text-3xl font-bold"
