@@ -163,16 +163,11 @@ const AboutSection = () => (
           </div>
         </div>
 
-        {/*Quebra visual*/}
-        <div
-          className="w-16 md:w-24 h-1 mx-auto mb-8 rounded-full"
-          style={{ background: VERDE }}
-        />
         {/* Nossos Pilares – verticalizado */}
         <div className="space-y-8">
           <h3
-            className="text-2xl lg:text-3xl font-bold text-center"
-            style={{ color: AZUL }}
+            className="text-2xl lg:text-3xl font-bold text-center uppercase"
+            style={{ color: VERDE }}
           >
             Nossos Pilares
           </h3>
@@ -182,14 +177,18 @@ const AboutSection = () => (
                 key={title}
                 className="flex flex-col items-center justify-center max-w-xs text-center"
               >
-                <img src={img} className="w-12" />
+                <img
+                  src={img}
+                  className="w-14 h-14 object-contain p-2 mb-4"
+                  alt={title}
+                />
                 <h3
                   className="text-lg font-bold mb-1 uppercase"
-                  style={{ color: AZUL }}
+                  style={{ color: VERDE }}
                 >
                   {title}
                 </h3>
-                <p style={{ color: AZUL }}>{description}</p>
+                <p style={{ color: VERDE }}>{description}</p>
               </div>
             ))}
           </div>

@@ -136,14 +136,14 @@ const HeroSection = () => (
             style={{ maxWidth: 520 }}
           >
             <span
-              className="block text-base md:text-xl font-normal text-center mb-4"
+              className="block text-base md:text-xl font-normal text-center mb-4 uppercase"
               style={{
                 color: "#efefef",
                 letterSpacing: "-0.01em",
                 textShadow: "0 1px 12px #18332155",
               }}
             >
-              Cuidamos do seu{" "}
+              Cuidamos{" "}
               <Typewriter
                 words={heroTypingWords}
                 loop={0}
