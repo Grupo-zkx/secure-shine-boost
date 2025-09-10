@@ -44,13 +44,17 @@ const SolutionPage = () => {
               >
                 <CardContent className="p-8 flex flex-col h-full">
                   {/* Ícone */}
-                  <div
-                    className="flex items-center justify-center w-14 h-14 mb-6 rounded-full"
-                    style={{
-                      background: PRATA,
-                    }}
-                  >
-                    <Icon className="w-8 h-8 text-[#237E45]" />
+                  <div className="flex items-center justify-center w-14 h-14 mb-6">
+                    {solution.img ? (
+                      <img
+                        src={solution.img}
+                        className="text-[#237E45]"
+                        alt={solution.title}
+                      />
+                    ) : (
+                      <Icon className="w-8 h-8 text-[#0000ff]" />
+                    )}
+                    {/* <Icon className="w-8 h-8 text-[#237E45]" /> */}
                   </div>
                   <h2
                     className="text-xl font-bold mb-2"
@@ -84,8 +88,8 @@ const SolutionPage = () => {
                     style={{ textTransform: "capitalize" }}
                     aria-label={`Saiba mais sobre a solução ${solution.title}`}
                   >
-                    <Link to={`/solucoes/${solution.slug}`}>
-                      Saiba Mais <ArrowRight className="w-4 h-4 ml-1" />
+                    <Link to={`/proposta`}>
+                      Solicitar Proposta <ArrowRight className="w-4 h-4 ml-1" />
                     </Link>
                   </Button>
                 </CardContent>
@@ -107,8 +111,9 @@ const SolutionPage = () => {
               Precisa de uma solução personalizada?
             </h2>
             <p className="text-lg text-white/90 max-w-2xl mx-auto mb-5">
-              Nossa equipe está pronta para entender seu desafio e montar uma
-              proposta exclusiva para sua empresa.
+              Desenvolvemos projetos sob medida, adequados à realidade de cada
+              parceiro, com foco em redução de custos, eficiência operacional e
+              segurança total.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -120,7 +125,7 @@ const SolutionPage = () => {
               >
                 Falar com Especialista
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 size="lg"
                 className="border-[#237E45] text-[#237E45] px-8 py-3 rounded-full transition font-bold
@@ -129,7 +134,7 @@ const SolutionPage = () => {
                 aria-label="Ver Casos de Sucesso"
               >
                 Ver Casos de Sucesso
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

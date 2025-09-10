@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -17,6 +17,31 @@ const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(false)
+  const closeTimeoutRef = useRef<number | null>(null)
+
+  const openMenu = () => {
+    if (closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+    setOpenDropdown(true)
+  }
+
+  const scheduleCloseMenu = () => {
+    if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current)
+    closeTimeoutRef.current = window.setTimeout(
+      () => setOpenDropdown(false),
+      150
+    )
+  }
+
+  const cancelScheduledClose = () => {
+    if (closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+  }
 
   return (
     <header
@@ -65,36 +90,126 @@ export default function Header() {
               src={LOGO_COLORIDA}
               alt="Logo ZKX"
               className="max-h-12 max-w-[310px] w-auto h-auto select-none"
-              style={{
-                objectFit: "contain",
-                display: "block",
-              }}
+              style={{ objectFit: "contain", display: "block" }}
             />
           </Link>
         </div>
 
         {/* Links centralizados */}
         <div className="hidden md:flex flex-grow justify-center items-center gap-6 h-full">
-          {FULL_MENU.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150
-                text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
-              style={{ letterSpacing: ".013em", textTransform: "capitalize" }}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {/* Renderização dos itens: substituí o item "Serviços" por um dropdown controlado */}
+          {FULL_MENU.map((item) => {
+            if (
+              item.label.toLowerCase() === "serviços" ||
+              item.label.toLowerCase() === "servicos"
+            ) {
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={openMenu}
+                  onMouseLeave={scheduleCloseMenu}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown}
+                >
+                  <button
+                    className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
+                    style={{
+                      letterSpacing: ".013em",
+                      textTransform: "capitalize",
+                    }}
+                    onFocus={openMenu}
+                    onBlur={scheduleCloseMenu}
+                    aria-controls="servicos-dropdown"
+                  >
+                    {item.label}
+                  </button>
+
+                  {/* Painel do dropdown — colado sem gap */}
+                  <div
+                    id="servicos-dropdown"
+                    role="menu"
+                    className={`absolute left-1/2 transform -translate-x-1/2 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150
+                    ${
+                      openDropdown
+                        ? "opacity-100 pointer-events-auto"
+                        : "opacity-0 pointer-events-none"
+                    }`}
+                    onMouseEnter={cancelScheduledClose}
+                    onMouseLeave={scheduleCloseMenu}
+                    style={{
+                      top: "100%",
+                      zIndex: 60,
+                      background: "white",
+                      border: `1px solid ${PRATA}33`,
+                    }}
+                  >
+                    <ul className="py-1">
+                      <li>
+                        <a
+                          href="#transportes"
+                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false)
+                            setOpenDropdown(false)
+                          }}
+                        >
+                          Transporte de numerário
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#atm"
+                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false)
+                            setOpenDropdown(false)
+                          }}
+                        >
+                          Abastecimento de ATMs
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#joias"
+                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false)
+                            setOpenDropdown(false)
+                          }}
+                        >
+                          Transporte de Joias e Metais
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )
+            }
+
+            // Itens normais
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
+                style={{ letterSpacing: ".013em", textTransform: "capitalize" }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
         </div>
 
         {/* Botões à direita */}
         <div className="hidden md:flex items-center justify-end flex-none w-auto h-full gap-4">
-          <Link
-            to="/portal"
-            className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white
-              hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
+          {/* Botão Área Cliente */}
+          <a
+            href="https://zkx.egtv.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
             style={{
               textTransform: "uppercase",
               letterSpacing: ".02em",
@@ -102,21 +217,69 @@ export default function Header() {
             }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Area Cliente
-          </Link>
-          <Link
-            to="/restrita"
-            className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45]
-              hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
-            style={{
-              textTransform: "uppercase",
-              letterSpacing: ".02em",
-              textAlign: "center",
+            Área Cliente
+          </a>
+
+          {/* Dropdown Portais — convertido para controle por foco/hover também */}
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              openMenu()
+              // reuse same handlers so only one dropdown state exists; if you want separate, create another state
             }}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onMouseLeave={scheduleCloseMenu}
           >
-            Area Restrita
-          </Link>
+            <button
+              className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45] hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
+              style={{
+                textTransform: "uppercase",
+                letterSpacing: ".02em",
+                textAlign: "center",
+              }}
+              onFocus={openMenu}
+              onBlur={scheduleCloseMenu}
+              aria-controls="portais-dropdown"
+              aria-haspopup="true"
+            >
+              Portais
+            </button>
+
+            <div
+              id="portais-dropdown"
+              role="menu"
+              className={`absolute right-0 mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150
+              ${
+                openDropdown
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none"
+              }`}
+              onMouseEnter={cancelScheduledClose}
+              onMouseLeave={scheduleCloseMenu}
+              style={{
+                top: "100%",
+                zIndex: 60,
+                background: "white",
+                border: `1px solid ${PRATA}33`,
+              }}
+            >
+              <a
+                href="https://zkx.satmob.com.br"
+                target="_blank"
+                className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
+                onClick={() => setOpenDropdown(false)}
+              >
+                Corporativo
+              </a>
+              <a
+                href="https://webmail-seguro.com.br/v2/"
+                target="_blank"
+                className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
+                onClick={() => setOpenDropdown(false)}
+              >
+                Email
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Mobile burger menu */}
@@ -153,8 +316,7 @@ export default function Header() {
             ))}
             <Link
               to="/portal"
-              className="mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white
-                hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150"
+              className="mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150"
               style={{
                 textTransform: "uppercase",
                 letterSpacing: ".012em",
@@ -166,8 +328,7 @@ export default function Header() {
             </Link>
             <Link
               to="/#contato"
-              className="mb-3 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-white text-[#237E45]
-                hover:bg-[#237E45]/10 hover:text-[#154723] mx-auto transition-all duration-150"
+              className="mb-3 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-white text-[#237E45] hover:bg-[#237E45]/10 hover:text-[#154723] mx-auto transition-all duration-150"
               style={{
                 textTransform: "uppercase",
                 letterSpacing: ".012em",

@@ -10,6 +10,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import SolutionDetailPage from "./pages/DetailPage"
 import WhatsAppButton from "./components/WhatsappButton"
+import ProposePage from "./pages/Proposta"
 
 const queryClient = new QueryClient()
 
@@ -23,7 +24,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/solucoes" element={<SolutionPage />} />
-          <Route path="/solucoes/:slug" element={<SolutionDetailPage />} />
+          <Route path="/proposta" element={<ProposePage />} />
+          {/* <Route path="/solucoes/:slug" element={<SolutionDetailPage />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

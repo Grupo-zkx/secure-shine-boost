@@ -7,18 +7,16 @@ const SolutionBanner = () => (
   <section
     aria-label="Nossas Soluções - Banner"
     className="w-full bg-white flex flex-col items-center relative"
-    style={{ minHeight: "75vh" }} // Tamanho inicial restaurado
   >
     <motion.div
       className="w-full flex flex-col items-center justify-center relative overflow-hidden"
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, type: "spring", delay: 0.08 }}
-      style={{ minHeight: "75vh", maxWidth: "100vw" }}
     >
       {/* Imagem de fundo centralizada */}
       <img
-        src="/assets/solutions-banner.jpg"
+        src="/assets/hero-img.jpg"
         alt="Banner institucional Soluções"
         className="absolute inset-0 w-full h-full object-cover object-center"
         style={{
