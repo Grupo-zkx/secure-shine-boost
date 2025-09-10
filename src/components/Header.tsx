@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const VERDE = "#237E45"
 const PRATA = "#BFC8CC"
@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: "SOBRE", to: "/#sobre" },
   { label: "ATUAÇÃO", to: "/#atuacao" },
   { label: "SOLUÇÕES", to: "/solucoes" },
-  { label: "PROPOSTA", to: "/#contato" },
+  { label: "PROPOSTA", to: "/proposta" },
 ]
 const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 
@@ -19,6 +19,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(false)
   const closeTimeoutRef = useRef<number | null>(null)
+
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const openMenu = () => {
     if (closeTimeoutRef.current) {
@@ -241,7 +244,7 @@ export default function Header() {
               aria-controls="portais-dropdown"
               aria-haspopup="true"
             >
-              Portais
+              Área Restrita
             </button>
 
             <div
@@ -303,17 +306,59 @@ export default function Header() {
           style={{ top: "100%" }}
         >
           <div className="container mx-auto px-4 flex flex-col gap-1">
-            {FULL_MENU.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="py-4 pl-3 text-lg font-semibold hover:bg-[#BFC8CC]/25 transition-all"
-                style={{ textTransform: "capitalize" }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {FULL_MENU.map((item) => {
+              if (item.to === "/") {
+                // caso especial para o botão INÍCIO
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false)
+
+                      if (location.pathname === "/") {
+                        // já está no index, rola pro topo mesmo com hash
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+
+                        // opcional: limpar hash da URL
+                        if (window.location.hash) {
+                          history.replaceState(
+                            null,
+                            "",
+                            window.location.pathname
+                          )
+                        }
+                      } else {
+                        // se estiver em outra página, navega pro index
+                        navigate("/")
+                      }
+                    }}
+                    className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
+                    style={{
+                      letterSpacing: ".013em",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                )
+              }
+
+              // todos os outros itens continuam sendo Link normalmente
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
+                  style={{
+                    letterSpacing: ".013em",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
             <Link
               to="/portal"
               className="mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150"
