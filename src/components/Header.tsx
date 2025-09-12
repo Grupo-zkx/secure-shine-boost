@@ -211,7 +211,6 @@ export default function Header() {
           <a
             href="https://zkx.egtv.com.br"
             target="_blank"
-            rel="noopener noreferrer"
             className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
             style={{
               textTransform: "uppercase",
