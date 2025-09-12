@@ -209,7 +209,7 @@ export default function Header() {
         <div className="hidden md:flex items-center justify-end flex-none w-auto h-full gap-4">
           {/* Botão Área Cliente */}
           <a
-            href="https://zkx.egtv.com.br"
+            href="https://zkx.satmob.com.br"
             target="_blank"
             className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
             style={{
