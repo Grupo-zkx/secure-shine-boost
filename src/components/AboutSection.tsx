@@ -65,15 +65,18 @@ const AboutSection = () => (
         </h2>
         {/* Descrição */}
         <p
-          className="text-base leading-relaxed max-w-2xl mx-auto"
+          className="text-base leading-relaxed max-w-2xl mx-auto text-justify"
           style={{ color: "#555", fontWeight: 250 }}
         >
-          O Grupo ZKX surgiu da experiência empreendedora de José Carlos
-          Carvalho, referência nacional no setor lotérico. Com mais de 20 anos
-          de atuação em diversos segmentos, o grupo fundou a ZKX Transporte de
-          Valores e Segurança para oferecer soluções eficientes e tecnológicas
-          no Rio de Janeiro, com foco em segurança, integridade e atendimento
-          personalizado.
+          Com mais de <strong>20 anos de experiência</strong> em diferentes
+          segmentos – loterias, farmácias, construção civil e serviços – o grupo
+          construiu sua história com credibilidade, inovação e compromisso com a
+          excelência. A partir dessa base sólida, surge a{" "}
+          <strong>ZKX Transporte de Valores e Segurança</strong>, criada para
+          oferecer eficiência, confiabilidade e tecnologia de ponta em um setor
+          essencial para o mercado do Rio de Janeiro. Nosso propósito é claro:
+          garantir segurança com integridade e atender cada cliente de forma
+          próxima e personalizada.
         </p>
       </div>
 
@@ -100,13 +103,13 @@ const AboutSection = () => (
                 </h3>
                 <div className="text-base text-[#5a666c] space-y-4 leading-relaxed">
                   <p>
-                    A trajetória do Grupo ZKX tem início com a inspiração do seu
-                    fundador, José Carlos Carvalho, que começou sua vida
-                    profissional no setor bancário, onde desenvolveu um profundo
-                    entendimento sobre responsabilidade, compromisso e
-                    organização. Ainda jovem, despertou seu espírito
-                    empreendedor e deu o primeiro passo ousado: adquiriu sua
-                    primeira empresa, uma casa lotérica.
+                    A trajetória do Grupo ZKX teve início com a inspiração do
+                    nosso fundador, Zé Carlos, que começou sua vida profissional
+                    no setor bancário, onde desenvolveu um profundo entendimento
+                    sobre responsabilidade, compromisso e organização. Ainda
+                    jovem, despertou seu espírito empreendedor e deu o primeiro
+                    passo ousado: adquiriu sua primeira empresa, uma casa
+                    lotérica.
                   </p>
                   <p>
                     Com trabalho árduo, visão estratégica e dedicação à
@@ -123,9 +126,9 @@ const AboutSection = () => (
                   <p>
                     A expansão dos negócios não parou por aí. O Grupo
                     diversificou suas atividades, investindo em farmácias,
-                    restaurantes, lanchonetes, construção civil e incorporação
-                    imobiliária, sempre pautado pelos mesmos valores: qualidade,
-                    solidez e inovação.
+                    construção civil, incorporação imobiliária e serviços,
+                    sempre pautado pelos mesmos valores: qualidade, solidez e
+                    inovação.
                   </p>
                 </div>
               </div>
@@ -195,11 +198,37 @@ const AboutSection = () => (
                     Nosso Lema
                   </h3>
                   <p className="text-base text-[#5a666c] leading-relaxed">
-                    Quem é daqui, atende melhor
+                    “Quem é daqui, atende melhor.”
                   </p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Nascimento da ZKX*/}
+
+        <div className="space-y-8 pb-8">
+          <h3
+            className="text-2xl lg:text-3xl font-bold text-center uppercase"
+            style={{ color: VERDE }}
+          >
+            O Nascimento da ZKX Transporte de Valores e Segurança
+          </h3>
+          <div className="text-base text-[#5a666c] space-y-4 leading-relaxed mx-8 text-justify">
+            <p>
+              A ZKX Transporte de Valores e Segurança nasceu da união entre a
+              experiência empresarial e a inspiração de uma amizade com Reynaldo
+              Giannini, um dos fundadores da antiga Transvip. Essa conexão,
+              aliada à percepção de uma grande lacuna no setor de transporte de
+              valores do Rio de Janeiro, foi determinante para a criação de uma
+              empresa com alto padrão de eficiência, confiabilidade e segurança.
+            </p>
+            <p>
+              Assim surgiu a ZKX: uma empresa com DNA empreendedor, visão
+              estratégica e compromisso com a excelência, preparada para atender
+              às demandas de um mercado exigente e em constante transformação.
+            </p>
           </div>
         </div>
 

@@ -67,11 +67,11 @@ const HeroSection = () => (
                       "0 3px 22px rgba(21,71,35,.19), 0 1px 1px rgba(17,59,42,.5)",
                   }}
                 >
-                  Quem é daqui, atende melhor.
+                  ZKX TRANSPORTE DE VALORES
                 </h1>
 
                 <p
-                  className="mx-auto max-w-[48ch] md:max-w-[60ch] px-3 text-center"
+                  className="mx-auto max-w-[48ch] md:max-w-[77ch] px-3 text-center text-justify"
                   style={{
                     color: "#fff",
                     fontSize: "1rem",
