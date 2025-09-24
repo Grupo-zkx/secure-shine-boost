@@ -10,7 +10,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import SolutionDetailPage from "./pages/DetailPage"
 import WhatsAppButton from "./components/WhatsappButton"
-import ProposePage from "./pages/Proposta"
+import ProposePage from "./pages/PropostaPage"
 
 const queryClient = new QueryClient()
 

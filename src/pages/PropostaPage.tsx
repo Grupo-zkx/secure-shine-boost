@@ -74,7 +74,12 @@ export default function ProposePage(): JSX.Element {
         className="bg-white rounded-2xl p-6 shadow-md border border-[#f0f3f4]"
       >
         <h2 className="text-xl font-semibold flex items-center gap-2">
-          <Shield className="w-5 h-5 text-[#237E45]" /> Solicitar Proposta
+          <img
+            src="/assets/icone_proposta.png"
+            alt="Solicitar Proposta"
+            className="w-5 h-5 object-contain"
+          />
+          Solicitar Proposta
         </h2>
         <p className="text-sm text-slate-600 mt-2">
           Preencha os dados abaixo e nossa equipe entrará em contato.
@@ -154,7 +159,9 @@ export default function ProposePage(): JSX.Element {
             {...register("service", { required: "Selecione um serviço" })}
             className="px-3 py-2 rounded border border-[#e6eaeb] focus:ring-2 focus:ring-[#237E45]/30"
           >
-            <option value="" disabled selected>Selecione...</option>
+            <option value="" disabled selected>
+              Selecione...
+            </option>
             {solutions.map((service) => (
               <option key={service.slug} value={service.title}>
                 {service.title}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
@@ -18,9 +18,19 @@ const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  // dropdown states separados
+  // dropdown states
   const [openServicos, setOpenServicos] = useState(false)
   const [openPortais, setOpenPortais] = useState(false)
+
+  // anchors / posicionamento calculado
+  const [dropdownTop, setDropdownTop] = useState<number>(72) // px
+  const [servicosAnchorX, setServicosAnchorX] = useState<number | null>(null) // center x
+  const [portaisRightPx, setPortaisRightPx] = useState<number | null>(null) // distance from right edge
+
+  // refs
+  const headerRef = useRef<HTMLElement | null>(null)
+  const servicosTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const portaisTriggerRef = useRef<HTMLButtonElement | null>(null)
 
   const servicosCloseRef = useRef<number | null>(null)
   const portaisCloseRef = useRef<number | null>(null)
@@ -28,12 +38,35 @@ export default function Header() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Servicos dropdown helpers
+  // helpers: measure header bottom -> dropdown top
+  const measureDropdownTop = () => {
+    const rect = headerRef.current?.getBoundingClientRect()
+    // if header is sticky, bottom is relative to viewport; place dropdown below header
+    setDropdownTop(rect?.bottom ?? 72)
+  }
+
+  // calculate servicos anchor (center x of trigger); for fixed element we'll use left: anchorX + transform(-50%)
+  const measureServicosAnchor = () => {
+    const r = servicosTriggerRef.current?.getBoundingClientRect()
+    if (r) setServicosAnchorX(Math.round(r.left + r.width / 2))
+    else setServicosAnchorX(Math.round(window.innerWidth / 2))
+  }
+
+  // calculate portais right offset in px (distance from viewport right edge)
+  const measurePortaisRight = () => {
+    const r = portaisTriggerRef.current?.getBoundingClientRect()
+    if (r) setPortaisRightPx(Math.round(window.innerWidth - r.right))
+    else setPortaisRightPx(16)
+  }
+
+  // open/close handlers for Servicos
   const openServicosMenu = () => {
     if (servicosCloseRef.current) {
       window.clearTimeout(servicosCloseRef.current)
       servicosCloseRef.current = null
     }
+    measureDropdownTop()
+    measureServicosAnchor()
     setOpenServicos(true)
   }
   const scheduleCloseServicos = () => {
@@ -50,12 +83,14 @@ export default function Header() {
     }
   }
 
-  // Portais dropdown helpers
+  // open/close handlers for Portais
   const openPortaisMenu = () => {
     if (portaisCloseRef.current) {
       window.clearTimeout(portaisCloseRef.current)
       portaisCloseRef.current = null
     }
+    measureDropdownTop()
+    measurePortaisRight()
     setOpenPortais(true)
   }
   const scheduleClosePortais = () => {
@@ -72,7 +107,22 @@ export default function Header() {
     }
   }
 
-  // Navegação com suporte a âncoras/hash e limpeza de hash
+  // handle window resize: recompute anchors while dropdown open
+  useEffect(() => {
+    const onResize = () => {
+      if (openServicos) measureServicosAnchor()
+      if (openPortais) measurePortaisRight()
+      measureDropdownTop()
+    }
+    window.addEventListener("resize", onResize)
+    window.addEventListener("orientationchange", onResize)
+    return () => {
+      window.removeEventListener("resize", onResize)
+      window.removeEventListener("orientationchange", onResize)
+    }
+  }, [openServicos, openPortais])
+
+  // Navigation helper (same logic que você já usa)
   const handleNavItemClick = (item: { label: string; to: string }) => {
     setIsMobileMenuOpen(false)
 
@@ -107,10 +157,11 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
       className="sticky top-0 left-0 w-full z-50 bg-white border-b overflow-x-hidden"
       style={{ borderColor: `${PRATA}44` }}
     >
-      {/* Topbar (sempre visível em sm+) */}
+      {/* Topbar */}
       <div
         className="hidden sm:flex w-full text-xs h-8 px-6 items-center justify-between"
         style={{ background: PRATA, color: VERDE, fontWeight: 500 }}
@@ -142,9 +193,9 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Navbar principal */}
+      {/* Navbar */}
       <nav className="flex items-center justify-between px-6 min-h-[72px]">
-        {/* LOGO (mantive exatamente a classe original) */}
+        {/* LOGO */}
         <div className="flex items-center flex-none min-w-[160px] h-full pr-4">
           <Link to="/" className="flex items-center h-full">
             <img
@@ -156,7 +207,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Links centralizados (desktop) */}
+        {/* Links desktop */}
         <div className="hidden md:flex flex-grow justify-center items-center gap-6 h-full">
           {FULL_MENU.map((item) => {
             if (
@@ -171,8 +222,9 @@ export default function Header() {
                   onMouseLeave={scheduleCloseServicos}
                 >
                   <button
+                    ref={servicosTriggerRef}
                     onFocus={openServicosMenu}
-                    onBlur={scheduleCloseServicos}
+                    // removed onBlur to avoid closing when focusing dropdown
                     aria-controls="servicos-dropdown"
                     aria-expanded={openServicos}
                     className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
@@ -184,10 +236,11 @@ export default function Header() {
                     {item.label}
                   </button>
 
+                  {/* Dropdown FORÇADO para fixed - ancorado pela calculadora X/top */}
                   <div
                     id="servicos-dropdown"
                     role="menu"
-                    className={`absolute left-1/2 transform -translate-x-1/2 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+                    className={`fixed left-0 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
                       openServicos
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 pointer-events-none"
@@ -195,8 +248,10 @@ export default function Header() {
                     onMouseEnter={cancelCloseServicos}
                     onMouseLeave={scheduleCloseServicos}
                     style={{
-                      top: "100%",
-                      zIndex: 60,
+                      top: `${dropdownTop}px`,
+                      left: servicosAnchorX ? `${servicosAnchorX}px` : "50%",
+                      transform: "translateX(-50%)",
+                      zIndex: 99999,
                       background: "white",
                       border: `1px solid ${PRATA}33`,
                     }}
@@ -253,7 +308,6 @@ export default function Header() {
               )
             }
 
-            // itens normais
             return (
               <button
                 key={item.label}
@@ -267,7 +321,7 @@ export default function Header() {
           })}
         </div>
 
-        {/* Botões à direita (desktop) */}
+        {/* Right desktop actions */}
         <div className="hidden md:flex items-center justify-end flex-none w-auto h-full gap-4">
           <a
             href="https://zkx.satmob.com.br"
@@ -290,8 +344,8 @@ export default function Header() {
             onMouseLeave={scheduleClosePortais}
           >
             <button
+              ref={portaisTriggerRef}
               onFocus={openPortaisMenu}
-              onBlur={scheduleClosePortais}
               aria-controls="portais-dropdown"
               aria-haspopup="true"
               className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45] hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
@@ -304,10 +358,11 @@ export default function Header() {
               Área Restrita
             </button>
 
+            {/* Portais dropdown também FIXED, alinhado ao botão via right px */}
             <div
               id="portais-dropdown"
               role="menu"
-              className={`absolute right-0 mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
                 openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
@@ -315,8 +370,9 @@ export default function Header() {
               onMouseEnter={cancelClosePortais}
               onMouseLeave={scheduleClosePortais}
               style={{
-                top: "100%",
-                zIndex: 60,
+                top: `${dropdownTop}px`,
+                right: portaisRightPx != null ? `${portaisRightPx}px` : "16px",
+                zIndex: 99999,
                 background: "white",
                 border: `1px solid ${PRATA}33`,
               }}
@@ -341,7 +397,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile hamburger (visível em telas < md) */}
+        {/* Mobile hamburger */}
         <div className="md:hidden flex items-center">
           <button
             className="w-10 h-10 flex items-center justify-center rounded-full bg-[#237E45] text-white z-50"
@@ -357,7 +413,7 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (mantive fixed) */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t w-full z-40 bg-white text-[#237E45] border-[#BFC8CC]/40 fixed left-0 top-[72px] h-[calc(100vh-72px)] overflow-y-auto">
           <div className="px-4 py-4 flex flex-col gap-2">
@@ -373,7 +429,6 @@ export default function Header() {
                   </button>
                 )
               }
-
               if (
                 item.label.toLowerCase() === "serviços" ||
                 item.label.toLowerCase() === "servicos"
@@ -421,7 +476,6 @@ export default function Header() {
                   </details>
                 )
               }
-
               return (
                 <button
                   key={item.label}
