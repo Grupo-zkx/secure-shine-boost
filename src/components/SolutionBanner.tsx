@@ -39,7 +39,7 @@ const SolutionBanner = () => (
         }}
       >
         <h1
-          className="text-3xl md:text-5xl font-extrabold tracking-tight text-center"
+          className="text-3xl md:text-5xl font-extrabold tracking-tight text-center uppercase"
           style={{
             color: "#fff",
             letterSpacing: "0.018em",
@@ -62,8 +62,7 @@ const SolutionBanner = () => (
             marginBottom: 32,
           }}
         >
-          Segurança, tecnologia e eficiência para proteger seus valores — o que
-          há de mais moderno para sua empresa.
+          Escolha a melhor solução que atende a necessidade da sua empresa.
         </div>
       </div>
     </motion.div>

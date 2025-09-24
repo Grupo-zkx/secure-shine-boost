@@ -41,8 +41,8 @@ const clientSegments = [
 ]
 
 const stats = [
-  { value: "300+", label: "Clientes Ativos" },
-  { value: clientSegments.length, label: "Segmentos Atendidos" },
+  { value: "600+", label: "Clientes Ativos" },
+  { value: clientSegments.length + "+", label: "Segmentos Atendidos" },
   { value: "20+", label: "Anos de Experiência" },
   { value: "100%", label: "Segurança Garantida" },
 ]

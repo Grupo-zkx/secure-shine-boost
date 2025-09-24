@@ -24,15 +24,20 @@ const contactInfo = [
 
 // Links institucionais padronizados
 const quickLinks = [
-  { label: "Início", href: "#home" },
-  { label: "Soluções", href: "#services" }, // troquei "Serviços"
-  { label: "Sobre", href: "#about" },
-  { label: "Atuação", href: "#clients" }, // troquei "Clientes"
-  { label: "Fale Conosco", href: "#contact" }, // troquei "Contato"
+  { label: "SOBRE", to: "/#sobre" },
+  { label: "ATUAÇÃO", to: "/#atuacao" },
+  { label: "SOLUÇÕES", to: "/solucoes" },
+  { label: "PROPOSTA", to: "/proposta" },
 ]
 
 // Apenas Instagram (institucional e atualizado)
-const socialLinks = [{ icon: Instagram, href: "#", label: "Instagram" }]
+const socialLinks = [
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/grupozkx/",
+    label: "Instagram",
+  },
+]
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" })
@@ -89,7 +94,7 @@ const Footer = () => (
             {quickLinks.map((link) => (
               <li key={link.label}>
                 <a
-                  href={link.href}
+                  href={link.to}
                   className="text-xs text-white/90 hover:text-[#BFC8CC] transition px-1 font-semibold"
                   style={{ textTransform: "capitalize" }}
                 >

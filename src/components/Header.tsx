@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { Menu, X, Phone, Mail, Shield } from "lucide-react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
@@ -17,40 +17,100 @@ const FULL_MENU = [{ label: "INÍCIO", to: "/" }, ...NAV_ITEMS]
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState(false)
-  const closeTimeoutRef = useRef<number | null>(null)
+
+  // dropdown states separados
+  const [openServicos, setOpenServicos] = useState(false)
+  const [openPortais, setOpenPortais] = useState(false)
+
+  const servicosCloseRef = useRef<number | null>(null)
+  const portaisCloseRef = useRef<number | null>(null)
 
   const location = useLocation()
   const navigate = useNavigate()
 
-  const openMenu = () => {
-    if (closeTimeoutRef.current) {
-      window.clearTimeout(closeTimeoutRef.current)
-      closeTimeoutRef.current = null
+  // Servicos dropdown helpers
+  const openServicosMenu = () => {
+    if (servicosCloseRef.current) {
+      window.clearTimeout(servicosCloseRef.current)
+      servicosCloseRef.current = null
     }
-    setOpenDropdown(true)
+    setOpenServicos(true)
   }
-
-  const scheduleCloseMenu = () => {
-    if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current)
-    closeTimeoutRef.current = window.setTimeout(
-      () => setOpenDropdown(false),
+  const scheduleCloseServicos = () => {
+    if (servicosCloseRef.current) window.clearTimeout(servicosCloseRef.current)
+    servicosCloseRef.current = window.setTimeout(
+      () => setOpenServicos(false),
       150
     )
   }
+  const cancelCloseServicos = () => {
+    if (servicosCloseRef.current) {
+      window.clearTimeout(servicosCloseRef.current)
+      servicosCloseRef.current = null
+    }
+  }
 
-  const cancelScheduledClose = () => {
-    if (closeTimeoutRef.current) {
-      window.clearTimeout(closeTimeoutRef.current)
-      closeTimeoutRef.current = null
+  // Portais dropdown helpers
+  const openPortaisMenu = () => {
+    if (portaisCloseRef.current) {
+      window.clearTimeout(portaisCloseRef.current)
+      portaisCloseRef.current = null
+    }
+    setOpenPortais(true)
+  }
+  const scheduleClosePortais = () => {
+    if (portaisCloseRef.current) window.clearTimeout(portaisCloseRef.current)
+    portaisCloseRef.current = window.setTimeout(
+      () => setOpenPortais(false),
+      150
+    )
+  }
+  const cancelClosePortais = () => {
+    if (portaisCloseRef.current) {
+      window.clearTimeout(portaisCloseRef.current)
+      portaisCloseRef.current = null
+    }
+  }
+
+  // Navegação com suporte a âncoras/hash e limpeza de hash
+  const handleNavItemClick = (item: { label: string; to: string }) => {
+    setIsMobileMenuOpen(false)
+
+    const [pathPart, hashPart] = item.to.split("#")
+    const path = pathPart || "/"
+    const hash = hashPart || ""
+
+    if (location.pathname === path) {
+      if (hash) {
+        const el =
+          document.getElementById(hash) ||
+          document.querySelector(`[name="${hash}"]`)
+        if (el) {
+          ;(el as HTMLElement).scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          })
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" })
+        }
+        if (window.location.hash)
+          window.history.replaceState(null, "", window.location.pathname)
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+        if (window.location.hash)
+          window.history.replaceState(null, "", window.location.pathname)
+      }
+    } else {
+      navigate(item.to)
     }
   }
 
   return (
     <header
-      className="sticky top-0 left-0 w-full z-50 bg-white border-b"
+      className="sticky top-0 left-0 w-full z-50 bg-white border-b overflow-x-hidden"
       style={{ borderColor: `${PRATA}44` }}
     >
+      {/* Topbar (sempre visível em sm+) */}
       <div
         className="hidden sm:flex w-full text-xs h-8 px-6 items-center justify-between"
         style={{ background: PRATA, color: VERDE, fontWeight: 500 }}
@@ -60,14 +120,12 @@ export default function Header() {
           Segurança homologada · Polícia Federal
         </div>
         <div className="flex gap-4 items-center font-medium">
-          <span className="flex items-center gap-1">
-            <Link
-              to="/trabalhe-conosco"
-              className="font-bold uppercase hover:underline"
-            >
-              trabalhe conosco
-            </Link>
-          </span>
+          <Link
+            to="/trabalhe-conosco"
+            className="font-bold uppercase hover:underline"
+          >
+            trabalhe conosco
+          </Link>
           <span className="flex items-center gap-1">
             <Phone className="w-3 h-3" />
             0800 349 8027
@@ -86,7 +144,7 @@ export default function Header() {
 
       {/* Navbar principal */}
       <nav className="flex items-center justify-between px-6 min-h-[72px]">
-        {/* LOGO horizontal */}
+        {/* LOGO (mantive exatamente a classe original) */}
         <div className="flex items-center flex-none min-w-[160px] h-full pr-4">
           <Link to="/" className="flex items-center h-full">
             <img
@@ -98,9 +156,8 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Links centralizados */}
+        {/* Links centralizados (desktop) */}
         <div className="hidden md:flex flex-grow justify-center items-center gap-6 h-full">
-          {/* Renderização dos itens: substituí o item "Serviços" por um dropdown controlado */}
           {FULL_MENU.map((item) => {
             if (
               item.label.toLowerCase() === "serviços" ||
@@ -110,36 +167,33 @@ export default function Header() {
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={openMenu}
-                  onMouseLeave={scheduleCloseMenu}
-                  aria-haspopup="true"
-                  aria-expanded={openDropdown}
+                  onMouseEnter={openServicosMenu}
+                  onMouseLeave={scheduleCloseServicos}
                 >
                   <button
+                    onFocus={openServicosMenu}
+                    onBlur={scheduleCloseServicos}
+                    aria-controls="servicos-dropdown"
+                    aria-expanded={openServicos}
                     className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
                     style={{
                       letterSpacing: ".013em",
                       textTransform: "capitalize",
                     }}
-                    onFocus={openMenu}
-                    onBlur={scheduleCloseMenu}
-                    aria-controls="servicos-dropdown"
                   >
                     {item.label}
                   </button>
 
-                  {/* Painel do dropdown — colado sem gap */}
                   <div
                     id="servicos-dropdown"
                     role="menu"
-                    className={`absolute left-1/2 transform -translate-x-1/2 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150
-                    ${
-                      openDropdown
+                    className={`absolute left-1/2 transform -translate-x-1/2 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+                      openServicos
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 pointer-events-none"
                     }`}
-                    onMouseEnter={cancelScheduledClose}
-                    onMouseLeave={scheduleCloseMenu}
+                    onMouseEnter={cancelCloseServicos}
+                    onMouseLeave={scheduleCloseServicos}
                     style={{
                       top: "100%",
                       zIndex: 60,
@@ -149,40 +203,49 @@ export default function Header() {
                   >
                     <ul className="py-1">
                       <li>
-                        <a
-                          href="#transportes"
-                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                        <button
+                          className="w-full text-left block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
                           onClick={() => {
                             setIsMobileMenuOpen(false)
-                            setOpenDropdown(false)
+                            setOpenServicos(false)
+                            handleNavItemClick({
+                              label: "Transporte de numerário",
+                              to: "/#transportes",
+                            })
                           }}
                         >
                           Transporte de numerário
-                        </a>
+                        </button>
                       </li>
                       <li>
-                        <a
-                          href="#atm"
-                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                        <button
+                          className="w-full text-left block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
                           onClick={() => {
                             setIsMobileMenuOpen(false)
-                            setOpenDropdown(false)
+                            setOpenServicos(false)
+                            handleNavItemClick({
+                              label: "Abastecimento de ATMs",
+                              to: "/#atm",
+                            })
                           }}
                         >
                           Abastecimento de ATMs
-                        </a>
+                        </button>
                       </li>
                       <li>
-                        <a
-                          href="#joias"
-                          className="block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
+                        <button
+                          className="w-full text-left block px-4 py-2 text-sm text-[#237E45] hover:bg-[#BFC8CC]/15"
                           onClick={() => {
                             setIsMobileMenuOpen(false)
-                            setOpenDropdown(false)
+                            setOpenServicos(false)
+                            handleNavItemClick({
+                              label: "Transporte de Joias e Metais",
+                              to: "/#joias",
+                            })
                           }}
                         >
                           Transporte de Joias e Metais
-                        </a>
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -190,27 +253,26 @@ export default function Header() {
               )
             }
 
-            // Itens normais
+            // itens normais
             return (
-              <Link
+              <button
                 key={item.label}
-                to={item.to}
+                onClick={() => handleNavItemClick(item)}
                 className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
                 style={{ letterSpacing: ".013em", textTransform: "capitalize" }}
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
-              </Link>
+              </button>
             )
           })}
         </div>
 
-        {/* Botões à direita */}
+        {/* Botões à direita (desktop) */}
         <div className="hidden md:flex items-center justify-end flex-none w-auto h-full gap-4">
-          {/* Botão Área Cliente */}
           <a
             href="https://zkx.satmob.com.br"
             target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-[#237E45] text-white hover:bg-[#154723] hover:text-[#BFC8CC] transition-all duration-150"
             style={{
               textTransform: "uppercase",
@@ -222,26 +284,22 @@ export default function Header() {
             Área Cliente
           </a>
 
-          {/* Dropdown Portais — convertido para controle por foco/hover também */}
           <div
             className="relative"
-            onMouseEnter={() => {
-              openMenu()
-              // reuse same handlers so only one dropdown state exists; if you want separate, create another state
-            }}
-            onMouseLeave={scheduleCloseMenu}
+            onMouseEnter={openPortaisMenu}
+            onMouseLeave={scheduleClosePortais}
           >
             <button
+              onFocus={openPortaisMenu}
+              onBlur={scheduleClosePortais}
+              aria-controls="portais-dropdown"
+              aria-haspopup="true"
               className="px-5 py-1 font-bold rounded-full text-[0.99rem] border border-[#237E45] bg-white text-[#237E45] hover:bg-[#237E45]/10 hover:text-[#154723] transition-all duration-150"
               style={{
                 textTransform: "uppercase",
                 letterSpacing: ".02em",
                 textAlign: "center",
               }}
-              onFocus={openMenu}
-              onBlur={scheduleCloseMenu}
-              aria-controls="portais-dropdown"
-              aria-haspopup="true"
             >
               Área Restrita
             </button>
@@ -249,14 +307,13 @@ export default function Header() {
             <div
               id="portais-dropdown"
               role="menu"
-              className={`absolute right-0 mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150
-              ${
-                openDropdown
+              className={`absolute right-0 mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+                openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
               }`}
-              onMouseEnter={cancelScheduledClose}
-              onMouseLeave={scheduleCloseMenu}
+              onMouseEnter={cancelClosePortais}
+              onMouseLeave={scheduleClosePortais}
               style={{
                 top: "100%",
                 zIndex: 60,
@@ -268,7 +325,7 @@ export default function Header() {
                 href="https://zkx.satmob.com.br"
                 target="_blank"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
-                onClick={() => setOpenDropdown(false)}
+                onClick={() => setOpenPortais(false)}
               >
                 Corporativo
               </a>
@@ -276,7 +333,7 @@ export default function Header() {
                 href="https://webmail-seguro.com.br/v2/"
                 target="_blank"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
-                onClick={() => setOpenDropdown(false)}
+                onClick={() => setOpenPortais(false)}
               >
                 Email
               </a>
@@ -284,104 +341,131 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile burger menu */}
-        <button
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-[#237E45] absolute right-5 top-3"
-          onClick={() => setIsMobileMenuOpen((v) => !v)}
-          aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6 text-white" />
-          ) : (
-            <Menu className="w-6 h-6 text-white" />
-          )}
-        </button>
+        {/* Mobile hamburger (visível em telas < md) */}
+        <div className="md:hidden flex items-center">
+          <button
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#237E45] text-white z-50"
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div
-          className="md:hidden border-t absolute left-0 w-full z-50 bg-white text-[#237E45] border-[#BFC8CC]/40"
-          style={{ top: "100%" }}
-        >
-          <div className="container mx-auto px-4 flex flex-col gap-1">
+        <div className="md:hidden border-t w-full z-40 bg-white text-[#237E45] border-[#BFC8CC]/40 fixed left-0 top-[72px] h-[calc(100vh-72px)] overflow-y-auto">
+          <div className="px-4 py-4 flex flex-col gap-2">
             {FULL_MENU.map((item) => {
               if (item.to === "/") {
-                // caso especial para o botão INÍCIO
                 return (
                   <button
                     key={item.label}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false)
-
-                      if (location.pathname === "/") {
-                        // já está no index, rola pro topo mesmo com hash
-                        window.scrollTo({ top: 0, behavior: "smooth" })
-
-                        // opcional: limpar hash da URL
-                        if (window.location.hash) {
-                          history.replaceState(
-                            null,
-                            "",
-                            window.location.pathname
-                          )
-                        }
-                      } else {
-                        // se estiver em outra página, navega pro index
-                        navigate("/")
-                      }
-                    }}
-                    className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
-                    style={{
-                      letterSpacing: ".013em",
-                      textTransform: "capitalize",
-                    }}
+                    onClick={() => handleNavItemClick(item)}
+                    className="w-full text-left py-3 pl-3 text-lg font-semibold hover:bg-[#BFC8CC]/25 rounded transition-all"
                   >
                     {item.label}
                   </button>
                 )
               }
 
-              // todos os outros itens continuam sendo Link normalmente
+              if (
+                item.label.toLowerCase() === "serviços" ||
+                item.label.toLowerCase() === "servicos"
+              ) {
+                return (
+                  <details key={item.label} className="group">
+                    <summary className="py-3 pl-3 text-lg font-semibold hover:bg-[#BFC8CC]/25 transition-all cursor-pointer list-none">
+                      {item.label}
+                    </summary>
+                    <div className="pl-5 flex flex-col">
+                      <button
+                        onClick={() =>
+                          handleNavItemClick({
+                            label: "Transporte de numerário",
+                            to: "/#transportes",
+                          })
+                        }
+                        className="py-2 text-base text-left hover:text-[#154723]"
+                      >
+                        Transporte de numerário
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleNavItemClick({
+                            label: "Abastecimento de ATMs",
+                            to: "/#atm",
+                          })
+                        }
+                        className="py-2 text-base text-left hover:text-[#154723]"
+                      >
+                        Abastecimento de ATMs
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleNavItemClick({
+                            label: "Transporte de Joias e Metais",
+                            to: "/#joias",
+                          })
+                        }
+                        className="py-2 text-base text-left hover:text-[#154723]"
+                      >
+                        Transporte de Joias e Metais
+                      </button>
+                    </div>
+                  </details>
+                )
+              }
+
               return (
-                <Link
+                <button
                   key={item.label}
-                  to={item.to}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-3 py-1 text-[1.19rem] font-semibold rounded transition-all duration-150 text-[#237E45] hover:text-[#154723] hover:bg-[#BFC8CC]/20 flex items-center h-full"
-                  style={{
-                    letterSpacing: ".013em",
-                    textTransform: "capitalize",
-                  }}
+                  onClick={() => handleNavItemClick(item)}
+                  className="w-full text-left py-3 pl-3 text-lg font-semibold hover:bg-[#BFC8CC]/25 rounded transition-all"
                 >
                   {item.label}
-                </Link>
+                </button>
               )
             })}
-            <Link
-              to="/portal"
-              className="mt-3 mb-2 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-[#237E45]/90 text-white hover:bg-[#154723]/95 hover:text-[#BFC8CC] mx-auto transition-all duration-150"
-              style={{
-                textTransform: "uppercase",
-                letterSpacing: ".012em",
-                textAlign: "center",
-              }}
+
+            <a
+              href="https://zkx.satmob.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 mb-2 px-4 py-2 w-full text-center font-bold rounded-full text-base border border-[#237e45] bg-[#237E45]/90 text-white hover:bg-[#154723]/95 hover:text-[#BFC8CC] transition-all"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Portal
-            </Link>
-            <Link
-              to="/#contato"
-              className="mb-3 px-6 py-3 font-bold rounded-full text-lg border border-[#237e45] bg-white text-[#237E45] hover:bg-[#237E45]/10 hover:text-[#154723] mx-auto transition-all duration-150"
-              style={{
-                textTransform: "uppercase",
-                letterSpacing: ".012em",
-                textAlign: "center",
-              }}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contato
-            </Link>
+              Área Cliente
+            </a>
+
+            <details className="group mb-2">
+              <summary className="px-4 py-2 rounded-full border border-[#237E45] bg-white text-[#237E45] hover:bg-[#237E45]/10 cursor-pointer text-center list-none text-base">
+                Área Restrita
+              </summary>
+              <div className="flex flex-col mt-2 text-center">
+                <a
+                  href="https://zkx.satmob.com.br"
+                  target="_blank"
+                  className="py-2 text-base text-[#237E45] hover:text-[#154723]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Corporativo
+                </a>
+                <a
+                  href="https://webmail-seguro.com.br/v2/"
+                  target="_blank"
+                  className="py-2 text-base text-[#237E45] hover:text-[#154723]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Email
+                </a>
+              </div>
+            </details>
           </div>
         </div>
       )}
