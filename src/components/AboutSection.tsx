@@ -90,7 +90,7 @@ const AboutSection = () => (
             >
               Nossa História
             </h3>
-            <div className="text-base text-[#5a666c] space-y-4 leading-relaxed mt-4">
+            <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mt-4">
               <p>
                 A trajetória do Grupo ZKX teve início com a inspiração do nosso
                 fundador, Zé Carlos, que começou sua vida profissional no setor
@@ -128,7 +128,7 @@ const AboutSection = () => (
             >
               O Nascimento da ZKX Transporte de Valores e Segurança
             </h3>
-            <div className="text-base text-[#5a666c] space-y-4 leading-relaxed mt-4 text-justify">
+            <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mt-4 text-justify">
               <p>
                 A ZKX Transporte de Valores e Segurança nasceu da união entre a
                 experiência empresarial e a inspiração de uma amizade com
