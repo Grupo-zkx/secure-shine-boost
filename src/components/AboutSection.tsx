@@ -121,8 +121,7 @@ const AboutSection = () => (
           <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
               A Zkx nasceu da união entre a experiência empresarial com um dos
-              fundadores da antiga Transvip. A percepção de uma lacuna no setor
-              de transporte. A percepção de uma lacuna no setor de transporte
+              fundadores da antiga Transvip. A percepção de uma lacuna no setor de transporte
               de valores no Rio de Janeiro motivou a criação de uma empresa com
               alto padrão de eficiência, confiabilidade e segurança.
             </p>
