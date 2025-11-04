@@ -91,10 +91,10 @@ const AboutSection = () => (
           </h3>
           <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
-              A trajetória do Grupo ZKX teve início com a inspiração do nosso
-              fundador, Zé Carlos, que começou sua vida profissional no setor
-              bancário, onde desenvolveu um profundo entendimento sobre
-              responsabilidade, compromisso e organização.
+              A trajetória do grupo Zkx teve início com a inspiração do nosso
+              fundador, que começou sua vida profissional no setor bancário,
+              onde desenvolveu um profundo entendimento sobre responsabilidade,
+              compromisso e organização.
             </p>
             <p>
               Com trabalho árduo e visão estratégica, tornou-se referência
@@ -120,11 +120,11 @@ const AboutSection = () => (
           </h3>
           <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
-              A ZKX nasceu da união entre a experiência empresarial e a amizade
-              com Reynaldo Giannini, um dos fundadores da Transvip. A percepção
-              de uma lacuna no setor de transporte de valores no Rio de Janeiro
-              motivou a criação de uma empresa com alto padrão de eficiência,
-              confiabilidade e segurança.
+              A Zkx nasceu da união entre a experiência empresarial com um dos
+              fundadores da antiga Transvip. A percepção de uma lacuna no setor
+              de transporte. A percepção de uma lacuna no setor de transporte
+              de valores no Rio de Janeiro motivou a criação de uma empresa com
+              alto padrão de eficiência, confiabilidade e segurança.
             </p>
             <p>
               Assim surgiu a ZKX: com DNA empreendedor, visão estratégica e
