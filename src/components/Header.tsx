@@ -171,12 +171,13 @@ export default function Header() {
           Segurança homologada · Polícia Federal
         </div>
         <div className="flex gap-4 items-center font-medium">
-          <Link
-            to="/trabalhe-conosco"
+          <a
+            href="mailto:rh@grupozkx.com.br?subject=Trabalhe%20Conosco%20-%20Envio%20de%20Curr%C3%ADculo&body=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20curr%C3%ADculo%20para%20fazer%20parte%20da%20equipe%20ZKX.%20Segue%20em%20anexo."
             className="font-bold uppercase hover:underline"
+            title="Envie seu currículo para rh@grupozkx.com.br"
           >
             trabalhe conosco
-          </Link>
+          </a>
           <span className="flex items-center gap-1">
             <Phone className="w-3 h-3" />
             0800 349 8027

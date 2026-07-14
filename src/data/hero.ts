@@ -1,16 +1,31 @@
-export const heroDescription = `Revolucionando o transporte de valores e a segurança patrimonial no Rio de Janeiro
-Durante décadas, o mercado de transporte de valores no RJ esteve concentrado nas mãos de poucas empresas, que ditavam preços e condições sem dar ao cliente liberdade de escolha.
-A ZKX nasceu para mudar essa realidade: transparência, segurança, tecnologia e atendimento de excelência para proteger o seu patrimônio.
-Agora, você tem uma nova opção.`
+import { ShieldCheck, HeartHandshake, Cpu, Shield, BadgeCheck, Award } from "lucide-react"
 
-export const heroTypingWords = [
-  "do seu transporte de valores",
-  "da sua segurança patrimonial",
-  "da sua escolta armada",
-  "do seu transporte de carga segura",
-  "do seu monitoramento de alarmes",
-  "do seu monitoramento de cameras",
-  "do seus cofres inteligentes",
-  "do seu abastecimento de ATMs",
-  "do seu processamento de valores",
+/**
+ * Conteúdo institucional do Hero (banner "imagem 1").
+ * Slogans e selos sobrepostos à foto estática da frota ZKX.
+ */
+export const heroSlogans = [
+  {
+    icon: ShieldCheck,
+    title: "PROTEGENDO",
+    subtitle: "O QUE REALMENTE IMPORTA",
+  },
+  {
+    icon: HeartHandshake,
+    title: "COMPROMISSO",
+    subtitle: "QUE NOS MOVE",
+  },
+  {
+    icon: Cpu,
+    title: "TECNOLOGIA",
+    subtitle: "A FAVOR DA SEGURANÇA",
+  },
 ]
+
+export const heroBadges = [
+  { icon: Shield, label: "SEGURANÇA" },
+  { icon: BadgeCheck, label: "CONFIANÇA" },
+  { icon: Award, label: "EXCELÊNCIA" },
+]
+
+export const heroTagline = "Quem é daqui, Atende Melhor!"
