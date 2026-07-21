@@ -57,7 +57,6 @@ const SolutionDetailBanner = ({ icon: Icon, title, description, img }: any) => (
             textShadow: "0 3px 22px rgba(21,71,35,.18),0 1px 1px #113b2a80",
           }}
         >
-          {console.log(img)}
           {title}
         </h1>
         <div

@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const VERDE = "#237E45"
 const PRATA = "#BFC8CC"
@@ -72,8 +73,10 @@ const Footer = () => (
           <div className="flex items-center gap-2 mb-1">
             {/* Logo SVG/PNG substituindo o Shield */}
             <img
-              src="/assets/logo/grupo_zkx_branco.svg" // ajuste o caminho conforme sua estrutura
+              src="/assets/logo/grupo_zkx_branco.svg"
               alt="ZKX Logo"
+              width={40}
+              height={40}
               className="w-10 h-10 object-contain"
               draggable={false}
             />
@@ -113,13 +116,13 @@ const Footer = () => (
           <ul className="flex flex-wrap gap-3 justify-center md:justify-start">
             {quickLinks.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.to}
+                <Link
+                  to={link.to}
                   className="text-xs text-white/90 hover:text-[#BFC8CC] transition px-1 font-semibold"
                   style={{ textTransform: "capitalize" }}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

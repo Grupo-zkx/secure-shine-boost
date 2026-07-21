@@ -1,11 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { CheckCircle } from "lucide-react"
-
 const VERDE = "#237E45"
-const AZUL = "#1e0bd0"
-const PRATA = "#BFC8CC"
-const PRATA_BG = "#E6E9EA"
-const BRANCO = "#FFFFFF"
 
 const values = [
   {
@@ -51,7 +44,7 @@ const AboutSection = () => (
         {/* Marca d'água visível apenas nos 3 blocos */}
         <img
           src="/assets/logo/grupo_zkx.svg"
-          alt="Marca d'água Grupo ZKX"
+          alt=""
           className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
           aria-hidden="true"
           style={{ opacity: 0.06 }}
@@ -65,7 +58,7 @@ const AboutSection = () => (
           >
             Sobre o Grupo ZKX
           </h3>
-          <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
+          <div className="text-base text-left text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
               Com mais de <strong>20 anos de experiência</strong> em diferentes
               segmentos – loterias, farmácias, construção civil e serviços – o
@@ -89,7 +82,7 @@ const AboutSection = () => (
           >
             Nossa História
           </h3>
-          <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
+          <div className="text-base text-left text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
               A trajetória do grupo Zkx teve início com a inspiração do nosso
               fundador, que começou sua vida profissional no setor bancário,
@@ -118,7 +111,7 @@ const AboutSection = () => (
           >
             O Nascimento da ZKX Transporte de Valores e Segurança
           </h3>
-          <div className="text-base text-justify text-[#5a666c] space-y-4 leading-relaxed mx-auto">
+          <div className="text-base text-left text-[#5a666c] space-y-4 leading-relaxed mx-auto">
             <p>
               A Zkx nasceu da união entre a experiência empresarial com um dos
               fundadores da antiga Transvip. A percepção de uma lacuna no setor de transporte
@@ -150,8 +143,12 @@ const AboutSection = () => (
             >
               <img
                 src={img}
+                width={64}
+                height={64}
+                loading="lazy"
                 className="w-16 h-16 object-contain mb-4"
-                alt={title}
+                alt=""
+                aria-hidden="true"
               />
               <h4
                 className="text-lg font-bold mb-2 uppercase"
@@ -159,7 +156,10 @@ const AboutSection = () => (
               >
                 {title}
               </h4>
-              <p className="text-sm" style={{ color: VERDE, fontWeight: 200 }}>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: "#3d5a48", fontWeight: 400 }}
+              >
                 {description}
               </p>
             </div>

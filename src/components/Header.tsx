@@ -202,6 +202,8 @@ export default function Header() {
             <img
               src={LOGO_COLORIDA}
               alt="Logo ZKX"
+              width={310}
+              height={48}
               className="max-h-12 max-w-[310px] w-auto h-auto select-none"
               style={{ objectFit: "contain", display: "block" }}
             />
@@ -241,7 +243,7 @@ export default function Header() {
                   <div
                     id="servicos-dropdown"
                     role="menu"
-                    className={`fixed left-0 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
+                    className={`fixed left-0 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                       openServicos
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 pointer-events-none"
@@ -363,7 +365,7 @@ export default function Header() {
             <div
               id="portais-dropdown"
               role="menu"
-              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
+              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                 openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
@@ -381,6 +383,7 @@ export default function Header() {
               <a
                 href="https://zkx.satmob.com.br"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
                 onClick={() => setOpenPortais(false)}
               >
@@ -389,6 +392,7 @@ export default function Header() {
               <a
                 href="https://webmail-seguro.com.br/v2/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
                 onClick={() => setOpenPortais(false)}
               >
@@ -506,6 +510,7 @@ export default function Header() {
                 <a
                   href="https://zkx.satmob.com.br"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="py-2 text-base text-[#237E45] hover:text-[#154723]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -514,6 +519,7 @@ export default function Header() {
                 <a
                   href="https://webmail-seguro.com.br/v2/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="py-2 text-base text-[#237E45] hover:text-[#154723]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
