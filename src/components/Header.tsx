@@ -171,12 +171,13 @@ export default function Header() {
           Segurança homologada · Polícia Federal
         </div>
         <div className="flex gap-4 items-center font-medium">
-          <Link
-            to="/trabalhe-conosco"
+          <a
+            href="mailto:rh@grupozkx.com.br?subject=Trabalhe%20Conosco%20-%20Envio%20de%20Curr%C3%ADculo&body=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20curr%C3%ADculo%20para%20fazer%20parte%20da%20equipe%20ZKX.%20Segue%20em%20anexo."
             className="font-bold uppercase hover:underline"
+            title="Envie seu currículo para rh@grupozkx.com.br"
           >
             trabalhe conosco
-          </Link>
+          </a>
           <span className="flex items-center gap-1">
             <Phone className="w-3 h-3" />
             0800 349 8027
@@ -201,6 +202,8 @@ export default function Header() {
             <img
               src={LOGO_COLORIDA}
               alt="Logo ZKX"
+              width={310}
+              height={48}
               className="max-h-12 max-w-[310px] w-auto h-auto select-none"
               style={{ objectFit: "contain", display: "block" }}
             />
@@ -240,7 +243,7 @@ export default function Header() {
                   <div
                     id="servicos-dropdown"
                     role="menu"
-                    className={`fixed left-0 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
+                    className={`fixed left-0 mt-0 w-56 rounded-md shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                       openServicos
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 pointer-events-none"
@@ -362,7 +365,7 @@ export default function Header() {
             <div
               id="portais-dropdown"
               role="menu"
-              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-all duration-150 ${
+              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                 openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
@@ -380,6 +383,7 @@ export default function Header() {
               <a
                 href="https://zkx.satmob.com.br"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
                 onClick={() => setOpenPortais(false)}
               >
@@ -388,6 +392,7 @@ export default function Header() {
               <a
                 href="https://webmail-seguro.com.br/v2/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
                 onClick={() => setOpenPortais(false)}
               >
@@ -505,6 +510,7 @@ export default function Header() {
                 <a
                   href="https://zkx.satmob.com.br"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="py-2 text-base text-[#237E45] hover:text-[#154723]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -513,6 +519,7 @@ export default function Header() {
                 <a
                   href="https://webmail-seguro.com.br/v2/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="py-2 text-base text-[#237E45] hover:text-[#154723]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

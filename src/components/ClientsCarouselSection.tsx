@@ -1,6 +1,7 @@
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import { Card } from "@/components/ui/card"
@@ -48,6 +49,16 @@ const stats = [
 ]
 
 export default function ClientsCarousel() {
+  // Respeita prefers-reduced-motion: desliga o autoplay do carrossel
+  const [reduceMotion, setReduceMotion] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    setReduceMotion(mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setReduceMotion(e.matches)
+    mq.addEventListener("change", onChange)
+    return () => mq.removeEventListener("change", onChange)
+  }, [])
+
   return (
     <section id="atuacao" className="py-36 bg-[#f8fafb] overflow-hidden">
       <div className="container mx-auto px-4">
@@ -82,10 +93,9 @@ export default function ClientsCarousel() {
           navigation
           pagination={{ clickable: true }}
           loop
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          autoplay={
+            reduceMotion ? false : { delay: 2500, disableOnInteraction: false }
+          }
           className="mb-16 px-2 select-none"
           style={{ paddingBottom: 48 }}
         >
@@ -108,6 +118,9 @@ export default function ClientsCarousel() {
                   <img
                     src={segment.image}
                     alt={segment.text}
+                    width={400}
+                    height={350}
+                    loading="lazy"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     style={{
                       borderRadius: 20,

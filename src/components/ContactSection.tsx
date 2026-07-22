@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -59,8 +60,22 @@ const services = [
   "processamento de valores",
 ]
 
-const ContactSection = () => (
-  <section id="contato" className="py-24 bg-[#f8fafb]">
+const ContactSection = () => {
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSubmitting(true)
+    // Sem backend definido ainda: simula o envio e confirma ao usuário.
+    window.setTimeout(() => {
+      setSubmitting(false)
+      setSubmitted(true)
+    }, 800)
+  }
+
+  return (
+    <section id="contato" className="py-24 bg-[#f8fafb]">
     <div className="container mx-auto px-4">
       {/* Divisor/acento verde */}
       <div
@@ -97,54 +112,81 @@ const ContactSection = () => (
                     retornarão rapidamente com uma proposta exclusiva.
                   </p>
                 </div>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label
-                        className="text-sm font-medium"
+                        htmlFor="contact-nome"
+                        className="text-sm font-medium block"
                         style={{ color: VERDE }}
                       >
                         Nome
                       </label>
-                      <Input placeholder="Seu nome completo" />
+                      <Input
+                        id="contact-nome"
+                        name="nome"
+                        autoComplete="name"
+                        placeholder="Seu nome completo"
+                      />
                     </div>
                     <div className="space-y-2">
                       <label
-                        className="text-sm font-medium"
+                        htmlFor="contact-empresa"
+                        className="text-sm font-medium block"
                         style={{ color: VERDE }}
                       >
                         Empresa
                       </label>
-                      <Input placeholder="Nome da empresa" />
+                      <Input
+                        id="contact-empresa"
+                        name="empresa"
+                        autoComplete="organization"
+                        placeholder="Nome da empresa"
+                      />
                     </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label
-                        className="text-sm font-medium"
+                        htmlFor="contact-email"
+                        className="text-sm font-medium block"
                         style={{ color: VERDE }}
                       >
                         Email
                       </label>
-                      <Input type="email" placeholder="seu@email.com" />
+                      <Input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="seu@email.com"
+                      />
                     </div>
                     <div className="space-y-2">
                       <label
-                        className="text-sm font-medium"
+                        htmlFor="contact-telefone"
+                        className="text-sm font-medium block"
                         style={{ color: VERDE }}
                       >
                         Telefone
                       </label>
-                      <Input placeholder="(XX) XXXXX-XXXX" />
+                      <Input
+                        id="contact-telefone"
+                        name="telefone"
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        placeholder="(XX) XXXXX-XXXX"
+                      />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label
+                  <fieldset className="space-y-2">
+                    <legend
                       className="text-sm font-medium"
                       style={{ color: VERDE }}
                     >
                       Serviços de Interesse
-                    </label>
+                    </legend>
                     <div className="grid md:grid-cols-2 gap-2">
                       {services.map((service) => (
                         <label
@@ -153,29 +195,36 @@ const ContactSection = () => (
                         >
                           <input
                             type="checkbox"
+                            name="servicos"
+                            value={service}
                             className="rounded border-[#BFC8CC] focus:ring-[#237E45]"
                           />
                           <span className="text-[#6a7682]">{service}</span>
                         </label>
                       ))}
                     </div>
-                  </div>
+                  </fieldset>
                   <div className="space-y-2">
                     <label
-                      className="text-sm font-medium"
+                      htmlFor="contact-mensagem"
+                      className="text-sm font-medium block"
                       style={{ color: VERDE }}
                     >
                       Mensagem
                     </label>
                     <Textarea
-                      placeholder="Descreva suas necessidades e como podemos ajudar..."
+                      id="contact-mensagem"
+                      name="mensagem"
+                      placeholder="Descreva suas necessidades e como podemos ajudar…"
                       rows={4}
                     />
                   </div>
                   <Button
+                    type="submit"
                     variant="accent"
                     size="lg"
-                    className="w-full flex items-center justify-center gap-2 mt-4 font-bold"
+                    disabled={submitting}
+                    className="w-full flex items-center justify-center gap-2 mt-4 font-bold disabled:opacity-70"
                     style={{
                       background: VERDE,
                       color: BRANCO,
@@ -183,8 +232,20 @@ const ContactSection = () => (
                       transition: "background 0.2s, color 0.2s",
                     }}
                   >
-                    <Send className="w-5 h-5 mr-1" /> Enviar Solicitação
+                    <Send className="w-5 h-5 mr-1" />
+                    {submitting ? "Enviando…" : "Enviar Solicitação"}
                   </Button>
+                  {submitted && (
+                    <p
+                      role="status"
+                      aria-live="polite"
+                      className="flex items-center gap-2 text-sm font-medium"
+                      style={{ color: VERDE }}
+                    >
+                      <CheckCircle className="w-4 h-4" />
+                      Solicitação enviada. Retornaremos em breve.
+                    </p>
+                  )}
                 </form>
               </div>
             </CardContent>
@@ -291,7 +352,8 @@ const ContactSection = () => (
         .animate-fade-in-right { animation: fade-in-right 1.1s cubic-bezier(.19,.9,.37,1.01) both;}
       `}</style>
     </div>
-  </section>
-)
+    </section>
+  )
+}
 
 export default ContactSection

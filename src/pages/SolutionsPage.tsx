@@ -48,13 +48,19 @@ const SolutionPage = () => {
                     {solution.img ? (
                       <img
                         src={solution.img}
-                        className="text-[#237E45]"
-                        alt={solution.title}
+                        width={56}
+                        height={56}
+                        loading="lazy"
+                        className="w-14 h-14 object-contain"
+                        alt=""
+                        aria-hidden="true"
                       />
                     ) : (
-                      <Icon className="w-8 h-8 text-[#0000ff]" />
+                      <Icon
+                        className="w-8 h-8 text-[#237E45]"
+                        aria-hidden="true"
+                      />
                     )}
-                    {/* <Icon className="w-8 h-8 text-[#237E45]" /> */}
                   </div>
                   <h2
                     className="text-xl font-bold mb-2"
@@ -117,13 +123,14 @@ const SolutionPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
+                asChild
                 variant="outline"
                 size="lg"
                 className="font-bold bg-white text-[#237E45] px-8 py-3 rounded-full hover:bg-[#BFC8CC]/60 hover:text-[#237E45] border-none"
                 style={{ textTransform: "capitalize" }}
                 aria-label="Falar com Especialista"
               >
-                Falar com Especialista
+                <Link to="/proposta">Falar com Especialista</Link>
               </Button>
               {/* <Button
                 variant="outline"

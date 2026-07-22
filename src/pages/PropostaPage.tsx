@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import { Shield } from "lucide-react"
 import { solutions } from "@/data/solutions"
+import { heroTagline } from "@/data/hero"
 
 type FormData = {
   company: string
@@ -63,13 +63,75 @@ export default function ProposePage(): JSX.Element {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.45 }}
-      className="max-w-2xl mx-auto py-12"
-    >
-      <form
+    <>
+      {/* Banner institucional — mesma identidade do Hero da Home */}
+      <section
+        aria-label="Solicitar Proposta - Banner"
+        className="w-full relative flex flex-col"
+        style={{ minHeight: "38vh", background: "#08142d" }}
+      >
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            backgroundImage: "url(/assets/hero-frota.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(6,17,40,0.66) 0%, rgba(8,22,52,0.50) 50%, rgba(6,17,40,0.72) 100%)",
+          }}
+        />
+        <motion.div
+          className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 py-16"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, type: "spring", delay: 0.08 }}
+          style={{ minHeight: "38vh" }}
+        >
+          <h1
+            className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase text-white"
+            style={{
+              letterSpacing: "0.018em",
+              textShadow: "0 3px 22px rgba(0,0,0,.45)",
+            }}
+          >
+            Solicitar Proposta
+          </h1>
+          <p
+            className="mt-4 max-w-lg text-white/90 font-medium text-base md:text-lg"
+            style={{ textShadow: "0 1px 10px rgba(0,0,0,.5)" }}
+          >
+            Conte suas necessidades — nossa equipe retorna em até 3 dias úteis.
+          </p>
+        </motion.div>
+        <div
+          className="w-full"
+          style={{
+            background: `${VERDE}f2`,
+            borderTop: "2px solid rgba(255,255,255,.12)",
+          }}
+        >
+          <div className="max-w-[1200px] mx-auto px-6 py-2.5 text-center">
+            <span className="text-white font-semibold italic text-sm md:text-base">
+              {heroTagline}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.45 }}
+        className="max-w-2xl mx-auto py-12 px-4"
+      >
+        <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white rounded-2xl p-6 shadow-md border border-[#f0f3f4]"
       >
@@ -90,6 +152,7 @@ export default function ProposePage(): JSX.Element {
             <span className="text-sm text-slate-600 mb-1">Empresa *</span>
             <input
               {...register("company", { required: "Informe a empresa" })}
+              autoComplete="organization"
               className="px-3 py-2 rounded border border-[#e6eaeb] focus:ring-2 focus:ring-[#237E45]/30"
             />
             {errors.company && (
@@ -107,6 +170,7 @@ export default function ProposePage(): JSX.Element {
               {...register("contactName", {
                 required: "Informe o nome de contato",
               })}
+              autoComplete="name"
               className="px-3 py-2 rounded border border-[#e6eaeb] focus:ring-2 focus:ring-[#237E45]/30"
             />
             {errors.contactName && (
@@ -120,6 +184,7 @@ export default function ProposePage(): JSX.Element {
             <span className="text-sm text-slate-600 mb-1">E-mail *</span>
             <input
               type="email"
+              autoComplete="email"
               {...register("email", {
                 required: "Informe o e-mail",
                 pattern: {
@@ -139,6 +204,9 @@ export default function ProposePage(): JSX.Element {
           <label className="flex flex-col">
             <span className="text-sm text-slate-600 mb-1">Telefone *</span>
             <input
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
               {...register("phone", { required: "Informe o telefone" })}
               className="px-3 py-2 rounded border border-[#e6eaeb] focus:ring-2 focus:ring-[#237E45]/30"
               placeholder="(11) 99999-9999"
@@ -159,8 +227,8 @@ export default function ProposePage(): JSX.Element {
             {...register("service", { required: "Selecione um serviço" })}
             className="px-3 py-2 rounded border border-[#e6eaeb] focus:ring-2 focus:ring-[#237E45]/30"
           >
-            <option value="" disabled selected>
-              Selecione...
+            <option value="" disabled>
+              Selecione…
             </option>
             {solutions.map((service) => (
               <option key={service.slug} value={service.title}>
@@ -218,6 +286,7 @@ export default function ProposePage(): JSX.Element {
           Receberemos sua solicitação e retornaremos em até 3 dias úteis.
         </p>
       </form>
-    </motion.div>
+      </motion.div>
+    </>
   )
 }
