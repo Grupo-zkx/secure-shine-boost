@@ -46,9 +46,9 @@ const HeroSection = () => (
       transition={{ duration: 0.7 }}
       style={{ minHeight: "75vh" }}
     >
-      {/* Slogans institucionais */}
-      <div className="flex-1 flex items-center">
-        <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16">
+      {/* Slogans institucionais — ancorados no topo-esquerda (espaço vazio do banner) */}
+      <div className="flex-1 flex items-start">
+        <div className="w-full max-w-[1200px] mr-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
           <ul className="flex flex-col gap-6 md:gap-8">
             {heroSlogans.map(({ icon: Icon, title, subtitle }) => (
               <li key={title} className="flex items-center gap-4 md:gap-5">
@@ -89,7 +89,7 @@ const HeroSection = () => (
         style={{ background: `${VERDE}f2`, borderTop: "2px solid rgba(255,255,255,.12)" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <ul className="w-full sm:w-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-2 md:gap-8">
+          <ul className="w-full sm:w-auto flex flex-wrap items-center justify-start gap-x-3 gap-y-2 md:gap-8">
             {heroBadges.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-1.5">
                 <Icon className="w-4 h-4 md:w-5 md:h-5 text-white/90 flex-shrink-0" />
