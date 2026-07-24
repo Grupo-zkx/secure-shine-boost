@@ -48,8 +48,8 @@ const HeroSection = () => (
     >
       {/* Slogans institucionais — ancorados no topo-esquerda (espaço vazio do banner) */}
       <div className="flex-1 flex items-start">
-        <div className="w-full max-w-[1200px] mr-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
-          <ul className="flex flex-col gap-6 md:gap-8">
+        <div className="w-full max-w-[1200px] ml-[15%] mr-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
+          <ul className="flex flex-col gap-3 md:gap-4">
             {heroSlogans.map(({ icon: Icon, title, subtitle }) => (
               <li key={title} className="flex items-center gap-4 md:gap-5">
                 <span
@@ -65,13 +65,13 @@ const HeroSection = () => (
                 </span>
                 <span className="flex flex-col leading-tight">
                   <span
-                    className="text-white font-extrabold tracking-wide text-xl md:text-3xl"
+                    className="text-white font-extrabold tracking-wide text-[0.6875rem] md:text-[1.03125rem]"
                     style={{ textShadow: "0 2px 14px rgba(0,0,0,.45)" }}
                   >
                     {title}
                   </span>
                   <span
-                    className="text-white/85 font-medium text-xs md:text-base tracking-wider uppercase"
+                    className="text-white/85 font-medium text-[0.4125rem] md:text-[0.55rem] tracking-wider uppercase"
                     style={{ textShadow: "0 1px 10px rgba(0,0,0,.5)" }}
                   >
                     {subtitle}
