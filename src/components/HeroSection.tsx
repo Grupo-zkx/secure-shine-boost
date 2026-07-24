@@ -48,7 +48,7 @@ const HeroSection = () => (
     >
       {/* Slogans institucionais — ancorados no topo-esquerda (espaço vazio do banner) */}
       <div className="flex-1 flex items-start">
-        <div className="w-full max-w-[1200px] ml-[15%] mr-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
+        <div className="w-full max-w-[1200px] mr-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
           <ul className="flex flex-col gap-3 md:gap-4">
             {heroSlogans.map(({ icon: Icon, title, subtitle }) => (
               <li key={title} className="flex items-center gap-4 md:gap-5">
