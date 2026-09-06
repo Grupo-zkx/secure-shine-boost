@@ -390,6 +390,15 @@ export default function Header() {
                 Corporativo
               </a>
               <a
+                href="https://routepro.grupozkx.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
+                onClick={() => setOpenPortais(false)}
+              >
+                RoutePro
+              </a>
+              <a
                 href="https://webmail-seguro.com.br/v2/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -515,6 +524,15 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Corporativo
+                </a>
+                <a
+                  href="https://routepro.grupozkx.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2 text-base text-[#237E45] hover:text-[#154723]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  RoutePro
                 </a>
                 <a
                   href="https://webmail-seguro.com.br/v2/"
