@@ -365,7 +365,7 @@ export default function Header() {
             <div
               id="portais-dropdown"
               role="menu"
-              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+              className={`fixed mt-0 w-48 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                 openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
