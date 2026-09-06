@@ -396,7 +396,7 @@ export default function Header() {
                 className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
                 onClick={() => setOpenPortais(false)}
               >
-                RoutePro
+                PLATAFORMA ZKX
               </a>
               <a
                 href="https://webmail-seguro.com.br/v2/"
@@ -532,7 +532,7 @@ export default function Header() {
                   className="py-2 text-base text-[#237E45] hover:text-[#154723]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  RoutePro
+                  PLATAFORMA ZKX
                 </a>
                 <a
                   href="https://webmail-seguro.com.br/v2/"
