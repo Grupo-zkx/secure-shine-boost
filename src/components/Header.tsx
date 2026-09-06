@@ -365,7 +365,7 @@ export default function Header() {
             <div
               id="portais-dropdown"
               role="menu"
-              className={`fixed mt-0 w-40 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
+              className={`fixed mt-0 w-48 p-1 rounded-lg shadow-lg ring-1 ring-black/5 transition-opacity duration-150 ${
                 openPortais
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
@@ -388,6 +388,15 @@ export default function Header() {
                 onClick={() => setOpenPortais(false)}
               >
                 Corporativo
+              </a>
+              <a
+                href="https://routepro.grupozkx.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 text-sm text-[#237E45] hover:bg-gray-100"
+                onClick={() => setOpenPortais(false)}
+              >
+                PLATAFORMA ZKX
               </a>
               <a
                 href="https://webmail-seguro.com.br/v2/"
@@ -515,6 +524,15 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Corporativo
+                </a>
+                <a
+                  href="https://routepro.grupozkx.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2 text-base text-[#237E45] hover:text-[#154723]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  PLATAFORMA ZKX
                 </a>
                 <a
                   href="https://webmail-seguro.com.br/v2/"
